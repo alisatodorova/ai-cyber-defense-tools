@@ -1,0 +1,5 @@
+hayabusa/
+__pycache__/
+logs/
+.claude/
+credential_access_rules.json
