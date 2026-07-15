@@ -12,7 +12,7 @@ Most "I used AI" portfolio pieces show a prompt and a screenshot. Mine don't. Ea
 
 | Tool | What it does | Course module | Stack |
 |---|---|---|---|
-| [`mcp-hayabusa`](mcp-hayabusa/) | MCP server wrapping the [Hayabusa](https://github.com/Yamato-Security/hayabusa) EVTX threat-hunting CLI - exposes `scan_evtx` and `get_hayabusa_rules` as structured-JSON tools an LLM client can call directly against Windows event logs | Module 3 - MCP: Wrapping Security CLIs | Python, MCP SDK, Hayabusa (Rust CLI, subprocess) |
+| [`mcp-hayabusa`](mcp-hayabusa/) | MCP server wrapping the [Hayabusa](https://github.com/Yamato-Security/hayabusa) EVTX threat-hunting CLI - exposes `scan_evtx` and `get_hayabusa_rules` as structured-JSON tools an LLM client can call directly against Windows event logs. Also doubles as a detection engineering knowledge base: curated Sigma rules and MITRE ATT&CK coverage exposed as browsable resources, plus `analyze_coverage` (tactic/technique-level covered vs. gap reporting) and `suggest_rule` (finds a promotable candidate in Hayabusa's bundled rule set, or scaffolds a new Sigma rule template, for a coverage gap) | Module 3 - MCP: Wrapping Security CLIs | Python, MCP SDK, Hayabusa (Rust CLI, subprocess) |
 | [`sysmon-parser`](sysmon-parser/) | Dependency-free CLI that extracts, filters, and triages Sysmon process-creation (Event ID 1) telemetry from raw XML into JSON/JSONL/CSV, with summary stats for quick hunting | Module 2 - Building Your First Security Tool | Python (stdlib only) |
 
 *(More tools land here as I work through the rest of the course)*
@@ -24,12 +24,14 @@ Most "I used AI" portfolio pieces show a prompt and a screenshot. Mine don't. Ea
 - Sigma-rule-based detection engineering, MITRE ATT&CK tagging conventions
 - Process-creation triage: parent/child chains, integrity levels, command-line obfuscation (base64 `-Enc`, LOLBAS patterns)
 - Threat-hunting workflows: filter → correlate → triage → drill down
+- Turning a detection ruleset into a queryable coverage model (technique → rules → covered/partial/gap) and using it to drive concrete next steps (promote an existing rule vs. author a new one)
 
 **AI/agentic engineering demonstrated:**
 - Building MCP servers that wrap existing CLI tools rather than reimplementing their logic - invocation, output translation, and error handling as the value-add
 - Designing structured, predictable tool contracts (explicit JSON error codes, not opaque exceptions) so an LLM client can reason about failures
 - Treating external tools/binaries as an untrusted boundary - failing fast and explicitly instead of silently degrading
 - Real debugging discipline when working with Claude: e.g. tracing a silent data-loss bug back to an undocumented CLI flag behavior (Hayabusa abbreviating `informational` → `info`) by comparing against ground truth, not trusting first-pass output
+- Building analysis tools on top of existing resource data instead of duplicating it, and catching real bugs in ranking/inference heuristics (e.g. a `deprecated` rule outranking a purpose-built one, or a generated rule template's log source being guessed from a file path instead of read from the source rule) through actual testing
 
 ## How this maps to an AI Security role
 
