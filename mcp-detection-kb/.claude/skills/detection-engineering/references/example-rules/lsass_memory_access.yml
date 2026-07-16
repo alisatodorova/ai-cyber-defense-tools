@@ -1,0 +1,71 @@
+title: LSASS Memory Access via MiniDump
+id: 7f3c1e2a-4b6d-4a9e-9c2f-8e5d1a7b3c40
+status: experimental
+description: >
+  Detects process access to LSASS.exe with access rights and call patterns
+  consistent with the use of the MiniDumpWriteDump Win32 API (e.g. via
+  comsvcs.dll MiniDump export, ProcDump, or custom dumping tools) to dump
+  LSASS memory for offline credential extraction. Severity is high because
+  a successful LSASS dump exposes plaintext credentials, NTLM hashes, and
+  Kerberos tickets for every logged-on account, and this specific access
+  pattern (PROCESS_VM_READ | PROCESS_QUERY_INFORMATION against lsass.exe)
+  has very low legitimate prevalence outside of approved diagnostics/EDR
+  tooling.
+references:
+  - https://attack.mitre.org/techniques/T1003/001/
+  - https://learn.microsoft.com/en-us/windows/win32/api/minidumpapiset/nf-minidumpapiset-minidumpwritedump
+author: detection-engineering-kb
+date: 2026-07-16
+tags:
+  - attack.t1003.001
+  - attack.credential_access
+logsource:
+  category: process_access
+  product: windows
+detection:
+  selection_target:
+    TargetImage|endswith: '\lsass.exe'
+  selection_access:
+    GrantedAccess:
+      - '0x1010'
+      - '0x1038'
+      - '0x143a'
+      - '0x1410'
+      - '0x1438'
+      - '0x1fffff'
+  selection_call_trace:
+    CallTrace|contains:
+      - 'dbghelp.dll'
+      - 'dbgcore.dll'
+      - 'comsvcs.dll'
+  filter_known_edr:
+    SourceImage|endswith:
+      - '\MsMpEng.exe'
+      - '\SenseIR.exe'
+      - '\MsSense.exe'
+  condition: selection_target and (selection_access or selection_call_trace) and not filter_known_edr
+fields:
+  - SourceImage
+  - TargetImage
+  - GrantedAccess
+  - CallTrace
+  - User
+falsepositives:
+  - Legitimate use of Task Manager "Create dump file" on lsass.exe by an administrator troubleshooting authentication issues
+  - Approved use of Sysinternals ProcDump by IT/security staff for authorized diagnostics or red team engagements
+  - Endpoint security or EDR agents that legitimately read LSASS memory for credential-theft detection (should be excluded via product-specific process allowlisting)
+  - Crash-reporting or system diagnostic tools (e.g. Windows Error Reporting, WerFault.exe) capturing a dump after an LSASS crash
+level: high
+
+# ---------------------------------------------------------------------------
+# This file is a reference example for the detection-engineering skill.
+# It demonstrates every required element from SKILL.md in one rule:
+#   1. ATT&CK tag            -> tags: attack.t1003.001
+#   2. Severity justification -> description explains why level: high
+#   3. False positives        -> concrete, specific conditions (not "Unknown")
+#   4. Test case               -> see the colocated .test.yml in this same
+#                                directory (or rules/credential_access/ for
+#                                the live copy of this rule with its tests)
+#   5. Naming convention      -> filename/id is lowercase_with_underscores
+# Use this as a template when starting a new rule.
+# ---------------------------------------------------------------------------

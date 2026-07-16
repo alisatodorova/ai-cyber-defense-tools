@@ -1,0 +1,53 @@
+title: SAM/SECURITY/SYSTEM Registry Hive Dump via reg.exe save
+id: 2d8a6f1c-9e4b-4c7a-b1d5-3f6a8c0e2b91
+status: experimental
+description: >
+  Detects use of the built-in reg.exe utility to save a copy of the SAM,
+  SECURITY, or SYSTEM registry hives to disk (e.g. `reg save hklm\sam`).
+  These hives contain local account password hashes and the boot key/LSA
+  secrets needed to decrypt them offline (as used by tools like Mimikatz's
+  lsadump or secretsdump.py). Severity is high because a successful hive
+  dump gives an attacker everything needed to recover local credentials
+  offline, and exporting these specific hive names via reg.exe has very
+  low legitimate prevalence outside of authorized backup or forensics
+  workflows.
+references:
+  - https://attack.mitre.org/techniques/T1003/002/
+  - https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/reg-save
+author: detection-engineering-kb
+date: 2026-07-16
+tags:
+  - attack.t1003.002
+  - attack.credential_access
+logsource:
+  category: process_creation
+  product: windows
+detection:
+  selection_image:
+    Image|endswith:
+      - '\reg.exe'
+      - '\reg.com'
+  selection_command:
+    CommandLine|contains: 'save'
+  selection_hive:
+    CommandLine|contains:
+      - 'hklm\sam'
+      - 'hklm\security'
+      - 'hklm\system'
+      - 'HKLM\SAM'
+      - 'HKLM\SECURITY'
+      - 'HKLM\SYSTEM'
+  filter_known_backup:
+    ParentImage|endswith:
+      - '\backup_agent.exe'
+  condition: selection_image and selection_command and selection_hive and not filter_known_backup
+fields:
+  - Image
+  - CommandLine
+  - ParentImage
+  - User
+falsepositives:
+  - Authorized backup software or scripted DR jobs that export registry hives as part of a system state backup
+  - Forensic or incident-response tooling intentionally dumping hives for authorized investigation
+  - System administrators manually backing up the registry before risky changes (rare, should be documented change activity)
+level: high

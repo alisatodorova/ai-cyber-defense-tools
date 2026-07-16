@@ -1,0 +1,29 @@
+title: Test cases for lsass_memory_access (reference example)
+rule: lsass_memory_access.yml
+
+tests:
+  - name: true_positive_comsvcs_minidump
+    description: >
+      rundll32 invoking the comsvcs.dll MiniDump export against the LSASS
+      process, the well-known "living off the land" LSASS dumping technique.
+    should_match: true
+    log:
+      EventID: 10
+      SourceImage: 'C:\Windows\System32\rundll32.exe'
+      TargetImage: 'C:\Windows\System32\lsass.exe'
+      GrantedAccess: '0x1fffff'
+      CallTrace: 'C:\Windows\System32\ntdll.dll+9d3e4|C:\Windows\System32\KERNELBASE.dll+2c8f0|C:\Windows\System32\comsvcs.dll+2b41'
+      User: 'CONTORO\jdoe'
+
+  - name: false_positive_edr_agent_excluded
+    description: >
+      Microsoft Defender for Endpoint sensor reading LSASS memory for its
+      own credential-theft detection; excluded via the known-EDR filter.
+    should_match: false
+    log:
+      EventID: 10
+      SourceImage: 'C:\Program Files\Windows Defender Advanced Threat Protection\MsSense.exe'
+      TargetImage: 'C:\Windows\System32\lsass.exe'
+      GrantedAccess: '0x1fffff'
+      CallTrace: 'C:\Windows\System32\ntdll.dll+9d3e4|C:\ProgramData\Microsoft\Windows Defender Advanced Threat Protection\Platform\sense.dll+1000'
+      User: 'NT AUTHORITY\SYSTEM'

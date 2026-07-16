@@ -1,0 +1,38 @@
+title: Test cases for azure_app_ropc_authentication
+rule: azure_app_ropc_authentication.yml
+
+tests:
+  - name: true_positive_ropc_signin
+    description: >
+      An Azure AD sign-in log entry where the application authenticated the
+      user via the ROPC flow, exposing the user's raw password credentials
+      to the application.
+    should_match: true
+    log:
+      properties.message: 'ROPC'
+      properties.appDisplayName: 'Legacy Line-of-Business App'
+      properties.userPrincipalName: 'jdoe@contoso.com'
+      properties.status.errorCode: 0
+
+  - name: true_positive_ropc_signin_automated_testing_app
+    description: >
+      A known automated-testing application using ROPC; still matches the
+      rule (it is not filtered out) since ROPC use should remain visible
+      even when a documented false-positive source is responsible.
+    should_match: true
+    log:
+      properties.message: 'ROPC'
+      properties.appDisplayName: 'CI Smoke Test Runner'
+      properties.userPrincipalName: 'svc-cismoketest@contoso.com'
+      properties.status.errorCode: 0
+
+  - name: false_positive_non_ropc_flow
+    description: >
+      A normal sign-in using the modern OAuth2 authorization code flow;
+      properties.message does not reference ROPC so the rule should not match.
+    should_match: false
+    log:
+      properties.message: 'Authorization Code'
+      properties.appDisplayName: 'Contoso Web Portal'
+      properties.userPrincipalName: 'jdoe@contoso.com'
+      properties.status.errorCode: 0

@@ -1,0 +1,55 @@
+title: Test cases for lsass_memory_dump_via_minidump
+rule: lsass_memory_dump_via_minidump.yml
+
+tests:
+  - name: true_positive_comsvcs_minidump
+    description: >
+      rundll32 invoking the comsvcs.dll MiniDump export against the LSASS
+      process, the well-known "living off the land" LSASS dumping technique.
+    should_match: true
+    log:
+      EventID: 10
+      SourceImage: 'C:\Windows\System32\rundll32.exe'
+      TargetImage: 'C:\Windows\System32\lsass.exe'
+      GrantedAccess: '0x1fffff'
+      CallTrace: 'C:\Windows\System32\ntdll.dll+9d3e4|C:\Windows\System32\KERNELBASE.dll+2c8f0|C:\Windows\System32\comsvcs.dll+2b41'
+      User: 'CONTORO\jdoe'
+
+  - name: true_positive_procdump
+    description: >
+      ProcDump.exe run against lsass.exe with a full-access handle,
+      consistent with unauthorized credential dumping.
+    should_match: true
+    log:
+      EventID: 10
+      SourceImage: 'C:\Tools\procdump.exe'
+      TargetImage: 'C:\Windows\System32\lsass.exe'
+      GrantedAccess: '0x1438'
+      CallTrace: 'C:\Windows\System32\ntdll.dll+9d3e4|C:\Windows\System32\dbghelp.dll+1a220'
+      User: 'CONTORO\jdoe'
+
+  - name: false_positive_edr_agent_excluded
+    description: >
+      Microsoft Defender for Endpoint sensor reading LSASS memory for its
+      own credential-theft detection; excluded via the known-EDR filter.
+    should_match: false
+    log:
+      EventID: 10
+      SourceImage: 'C:\Program Files\Windows Defender Advanced Threat Protection\MsSense.exe'
+      TargetImage: 'C:\Windows\System32\lsass.exe'
+      GrantedAccess: '0x1fffff'
+      CallTrace: 'C:\Windows\System32\ntdll.dll+9d3e4|C:\ProgramData\Microsoft\Windows Defender Advanced Threat Protection\Platform\sense.dll+1000'
+      User: 'NT AUTHORITY\SYSTEM'
+
+  - name: false_positive_low_privilege_access
+    description: >
+      A process querying lsass.exe with low-privilege access rights only
+      (e.g. PROCESS_QUERY_LIMITED_INFORMATION), not sufficient to dump memory.
+    should_match: false
+    log:
+      EventID: 10
+      SourceImage: 'C:\Windows\System32\tasklist.exe'
+      TargetImage: 'C:\Windows\System32\lsass.exe'
+      GrantedAccess: '0x1000'
+      CallTrace: 'C:\Windows\System32\ntdll.dll+9d3e4'
+      User: 'CONTORO\jdoe'

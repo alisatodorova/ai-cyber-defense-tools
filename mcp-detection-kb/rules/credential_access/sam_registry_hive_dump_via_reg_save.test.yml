@@ -1,0 +1,47 @@
+title: Test cases for sam_registry_hive_dump_via_reg_save
+rule: sam_registry_hive_dump_via_reg_save.yml
+
+tests:
+  - name: true_positive_sam_hive_dump
+    description: >
+      reg.exe used to save the SAM hive to a local file, the classic
+      first step in offline password hash extraction.
+    should_match: true
+    log:
+      Image: 'C:\Windows\System32\reg.exe'
+      CommandLine: 'reg.exe save hklm\sam C:\Windows\Temp\sam.hive'
+      ParentImage: 'C:\Windows\System32\cmd.exe'
+      User: 'CONTORO\jdoe'
+
+  - name: true_positive_system_and_security_hive_dump
+    description: >
+      reg.exe used to save the SYSTEM hive (needed to decrypt the SAM
+      hive's boot key), a common companion command to the SAM dump.
+    should_match: true
+    log:
+      Image: 'C:\Windows\System32\reg.exe'
+      CommandLine: 'reg save HKLM\SYSTEM C:\Users\Public\system.hive'
+      ParentImage: 'C:\Windows\System32\cmd.exe'
+      User: 'CONTORO\jdoe'
+
+  - name: false_positive_backup_agent_excluded
+    description: >
+      Authorized backup agent exporting the SAM hive as part of a
+      scheduled system state backup; excluded via the known-backup filter.
+    should_match: false
+    log:
+      Image: 'C:\Windows\System32\reg.exe'
+      CommandLine: 'reg.exe save hklm\sam C:\Backups\state\sam.hive'
+      ParentImage: 'C:\Program Files\Backup Vendor\backup_agent.exe'
+      User: 'NT AUTHORITY\SYSTEM'
+
+  - name: false_positive_unrelated_key_save
+    description: >
+      reg.exe save used against an unrelated registry key, not one of the
+      credential-bearing hives.
+    should_match: false
+    log:
+      Image: 'C:\Windows\System32\reg.exe'
+      CommandLine: 'reg.exe save hklm\software\contoso\app C:\Temp\app.hive'
+      ParentImage: 'C:\Windows\System32\cmd.exe'
+      User: 'CONTORO\jdoe'
