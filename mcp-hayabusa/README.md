@@ -4,7 +4,7 @@ An MCP (Model Context Protocol) server that wraps [Hayabusa](https://github.com/
 
 It also doubles as a small **detection engineering knowledge base**: curated Sigma rules and MITRE ATT&CK technique coverage, exposed as browsable MCP resources alongside the scanning tools.
 
-> Built as part of [module 3, "MCP – Wrapping Security CLIs"](https://www.justhacking.com/course/ai-cyber-defense-ops/), from Just Hacking Training's *AI Cyber Defense Ops* course.
+> Built as part of [Module 3: MCP – Wrapping Security CLIs and Module 4: MCP - Detection Knowledge Bases](https://www.justhacking.com/course/ai-cyber-defense-ops/), from Just Hacking Training's *AI Cyber Defense Ops* course.
 
 ## Why this exists
 
