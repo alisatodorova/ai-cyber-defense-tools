@@ -1,0 +1,3 @@
+index=botsv3 sourcetype="XmlWinEventLog:Microsoft-Windows-Sysmon/Operational" EventCode=10 TargetImage="*lsass.exe"
+| stats count values(SourceImage) as source_processes values(GrantedAccess) as granted_access by Computer TargetImage
+| sort - count

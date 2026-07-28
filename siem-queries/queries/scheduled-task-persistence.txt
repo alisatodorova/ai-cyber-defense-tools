@@ -1,0 +1,3 @@
+index=botsv3 sourcetype="XmlWinEventLog:Microsoft-Windows-Sysmon/Operational" EventCode=1 (Image="*schtasks.exe" OR CommandLine="*schtasks*") CommandLine="*/create*"
+| stats count values(CommandLine) as command_lines values(ParentImage) as parent_process by Computer User
+| sort - count

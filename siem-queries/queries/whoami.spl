@@ -1,0 +1,9 @@
+index=botsv3 sourcetype="xmlwineventlog:microsoft-windows-sysmon/operational" "<EventID>1</EventID>" whoami
+| rex "Name=.Image.>(?<Image>[^<]+)"
+| rex "Name=.CommandLine.>(?<CommandLine>[^<]+)"
+| rex "Name=.User.>(?<User>[^<]+)"
+| rex "Name=.ParentImage.>(?<ParentImage>[^<]+)"
+| rex "<Computer>(?<Computer>[^<]+)"
+| search Image="*whoami.exe"
+| stats count values(CommandLine) as command_lines values(ParentImage) as parent_process by Computer User
+| sort - count

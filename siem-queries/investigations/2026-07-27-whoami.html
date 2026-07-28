@@ -1,0 +1,544 @@
+<title>Investigation: whoami — Obsidian preview</title>
+<style>
+  :root {
+    --bg: #f6f6f8;
+    --bg-note: #ffffff;
+    --bg-panel: #fbfbfc;
+    --bg-elev: #f0f0f3;
+    --border: #e4e4ea;
+    --border-strong: #d6d6de;
+    --text: #2c2c33;
+    --text-muted: #6a6a75;
+    --text-faint: #9a9aa4;
+    --accent: #6d5ae6;
+    --link: #6d5ae6;
+    --link-unresolved: #b3a7ec;
+    --tag-bg: rgba(109,90,230,.10);
+    --tag-text: #5a48cc;
+    --code-bg: #f4f4f7;
+    --code-text: #33333b;
+    --status: #b9741f;
+    --status-bg: rgba(185,116,31,.12);
+    --graph-bg: #f1f1f4;
+    --graph-line: #cfcfd8;
+    --graph-node: #8b7cf0;
+    --graph-node-note: #6d5ae6;
+    --graph-node-unresolved: #bfb6ee;
+    --graph-node-tag: #9aa0ac;
+    --shadow: 0 1px 3px rgba(20,20,40,.06), 0 8px 24px rgba(20,20,40,.05);
+    --mono: "SF Mono","JetBrains Mono","Cascadia Code",Consolas,"Liberation Mono",monospace;
+    --sans: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #1a1a1c;
+      --bg-note: #202022;
+      --bg-panel: #1e1e20;
+      --bg-elev: #26262a;
+      --border: #34343a;
+      --border-strong: #3f3f47;
+      --text: #dcdce0;
+      --text-muted: #9a9aa2;
+      --text-faint: #66666f;
+      --accent: #a896ff;
+      --link: #a896ff;
+      --link-unresolved: #6a6088;
+      --tag-bg: rgba(168,150,255,.14);
+      --tag-text: #b8a9ff;
+      --code-bg: #161618;
+      --code-text: #cfcfd6;
+      --status: #e0a458;
+      --status-bg: rgba(224,164,88,.14);
+      --graph-bg: #161618;
+      --graph-line: #3a3a42;
+      --graph-node: #8b7cf0;
+      --graph-node-note: #a896ff;
+      --graph-node-unresolved: #5a5270;
+      --graph-node-tag: #7a7a86;
+      --shadow: 0 1px 3px rgba(0,0,0,.3), 0 10px 30px rgba(0,0,0,.25);
+    }
+  }
+  :root[data-theme="light"] {
+    --bg: #f6f6f8; --bg-note: #ffffff; --bg-panel: #fbfbfc; --bg-elev: #f0f0f3;
+    --border: #e4e4ea; --border-strong: #d6d6de; --text: #2c2c33; --text-muted: #6a6a75;
+    --text-faint: #9a9aa4; --accent: #6d5ae6; --link: #6d5ae6; --link-unresolved: #b3a7ec;
+    --tag-bg: rgba(109,90,230,.10); --tag-text: #5a48cc; --code-bg: #f4f4f7; --code-text: #33333b;
+    --status: #b9741f; --status-bg: rgba(185,116,31,.12);
+    --graph-bg: #f1f1f4; --graph-line: #cfcfd8; --graph-node: #8b7cf0;
+    --graph-node-note: #6d5ae6; --graph-node-unresolved: #bfb6ee; --graph-node-tag: #9aa0ac;
+    --shadow: 0 1px 3px rgba(20,20,40,.06), 0 8px 24px rgba(20,20,40,.05);
+  }
+  :root[data-theme="dark"] {
+    --bg: #1a1a1c; --bg-note: #202022; --bg-panel: #1e1e20; --bg-elev: #26262a;
+    --border: #34343a; --border-strong: #3f3f47; --text: #dcdce0; --text-muted: #9a9aa2;
+    --text-faint: #66666f; --accent: #a896ff; --link: #a896ff; --link-unresolved: #6a6088;
+    --tag-bg: rgba(168,150,255,.14); --tag-text: #b8a9ff; --code-bg: #161618; --code-text: #cfcfd6;
+    --status: #e0a458; --status-bg: rgba(224,164,88,.14);
+    --graph-bg: #161618; --graph-line: #3a3a42; --graph-node: #8b7cf0;
+    --graph-node-note: #a896ff; --graph-node-unresolved: #5a5270; --graph-node-tag: #7a7a86;
+    --shadow: 0 1px 3px rgba(0,0,0,.3), 0 10px 30px rgba(0,0,0,.25);
+  }
+
+  * { box-sizing: border-box; }
+  body { margin: 0; }
+  .app {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    min-height: 100vh;
+  }
+
+  /* Window chrome */
+  .titlebar {
+    display: flex; align-items: center; gap: 12px;
+    padding: 8px 14px;
+    background: var(--bg-panel);
+    border-bottom: 1px solid var(--border);
+    font-size: 12.5px; color: var(--text-muted);
+  }
+  .dots { display: flex; gap: 7px; }
+  .dot { width: 11px; height: 11px; border-radius: 50%; background: var(--border-strong); }
+  .tab {
+    display: inline-flex; align-items: center; gap: 7px;
+    padding: 4px 12px; border-radius: 6px 6px 0 0;
+    background: var(--bg-note); color: var(--text);
+    border: 1px solid var(--border); border-bottom: none;
+    margin-bottom: -9px; font-weight: 500;
+  }
+  .tab svg { width: 14px; height: 14px; opacity: .7; }
+  .titlebar .spacer { flex: 1; }
+  .theme-toggle {
+    cursor: pointer; background: var(--bg-elev); border: 1px solid var(--border);
+    color: var(--text-muted); border-radius: 6px; padding: 4px 10px; font-size: 12px;
+    font-family: var(--sans);
+  }
+  .theme-toggle:hover { color: var(--text); border-color: var(--border-strong); }
+
+  .layout {
+    display: grid;
+    grid-template-columns: minmax(0,1fr) 340px;
+    gap: 0;
+    align-items: start;
+  }
+
+  /* Reading pane */
+  .pane {
+    background: var(--bg-note);
+    padding: 40px clamp(20px, 5vw, 64px) 80px;
+    min-height: 100vh;
+    border-right: 1px solid var(--border);
+  }
+  .note { max-width: 720px; margin: 0 auto; }
+
+  .inline-title {
+    font-size: 2.1rem; font-weight: 700; letter-spacing: -.02em;
+    margin: 4px 0 22px; text-wrap: balance; line-height: 1.15;
+  }
+
+  /* Properties panel */
+  .properties {
+    border: 1px solid var(--border); border-radius: 8px;
+    background: var(--bg-panel); padding: 6px 4px; margin-bottom: 30px;
+  }
+  .prop {
+    display: grid; grid-template-columns: 150px 1fr; align-items: start;
+    gap: 10px; padding: 6px 12px; border-radius: 5px;
+  }
+  .prop:hover { background: var(--bg-elev); }
+  .prop-key {
+    display: flex; align-items: center; gap: 8px;
+    color: var(--text-muted); font-size: 13.5px;
+  }
+  .prop-key svg { width: 14px; height: 14px; opacity: .65; flex: none; }
+  .prop-val { font-size: 14px; display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+  .chip {
+    display: inline-flex; align-items: center;
+    background: var(--tag-bg); color: var(--tag-text);
+    border-radius: 12px; padding: 1px 10px; font-size: 12.5px; font-weight: 500;
+  }
+  .chip.mono { font-family: var(--mono); font-size: 12px; }
+  .mono-val { font-family: var(--mono); font-size: 13px; color: var(--text); }
+  .status-pill {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: var(--status-bg); color: var(--status);
+    border-radius: 12px; padding: 1px 10px; font-size: 12.5px; font-weight: 600;
+  }
+  .status-pill::before { content:""; width:7px; height:7px; border-radius:50%; background: currentColor; }
+
+  /* Body markdown */
+  .note h2 {
+    font-size: 1.28rem; font-weight: 650; letter-spacing: -.01em;
+    margin: 34px 0 12px; padding-bottom: 6px; border-bottom: 1px solid var(--border);
+  }
+  .note p { margin: 12px 0; color: var(--text); }
+  .note ul { margin: 12px 0; padding-left: 22px; }
+  .note li { margin: 7px 0; }
+  strong { font-weight: 680; }
+  code {
+    font-family: var(--mono); font-size: .86em;
+    background: var(--code-bg); color: var(--code-text);
+    padding: 1.5px 5px; border-radius: 4px;
+  }
+
+  /* Wikilink */
+  .wl {
+    color: var(--link); text-decoration: none; cursor: pointer;
+    border-bottom: 1px solid transparent;
+  }
+  .wl::before { content: "🔗"; display: none; }
+  .wl:hover { border-bottom-color: var(--link); background: var(--tag-bg); border-radius: 3px; }
+  .wl.active { background: var(--tag-bg); border-radius: 3px; padding: 0 3px; }
+
+  /* Code block */
+  pre {
+    background: var(--code-bg); border: 1px solid var(--border);
+    border-radius: 8px; padding: 14px 16px; overflow-x: auto; margin: 14px 0;
+    position: relative;
+  }
+  pre code { background: none; padding: 0; font-size: 12.5px; line-height: 1.6; color: var(--code-text); }
+  pre .lang { position: absolute; top: 8px; right: 12px; font-size: 10.5px; letter-spacing: .08em;
+    text-transform: uppercase; color: var(--text-faint); font-family: var(--sans); }
+  .tok-cmd { color: var(--accent); font-weight: 600; }
+  .tok-str { color: #3f9d6d; }
+  @media (prefers-color-scheme: dark){ .tok-str { color: #7ec99e; } }
+  :root[data-theme="dark"] .tok-str { color: #7ec99e; }
+  :root[data-theme="light"] .tok-str { color: #3f9d6d; }
+  .tok-field { color: #b9741f; }
+  :root[data-theme="dark"] .tok-field { color: #e0a458; }
+  .tok-pipe { color: var(--text-faint); }
+
+  /* Table */
+  .tbl-wrap { overflow-x: auto; margin: 14px 0; }
+  table { border-collapse: collapse; width: 100%; font-size: 13.5px; }
+  th, td { text-align: left; padding: 8px 12px; border: 1px solid var(--border); vertical-align: top; }
+  th { background: var(--bg-panel); font-weight: 600; color: var(--text-muted); }
+  td { font-variant-numeric: tabular-nums; }
+
+  /* Task list */
+  .tasks { list-style: none; padding-left: 2px; }
+  .tasks li { display: flex; gap: 10px; align-items: flex-start; }
+  .box {
+    width: 16px; height: 16px; margin-top: 4px; flex: none;
+    border: 1.6px solid var(--border-strong); border-radius: 4px; background: var(--bg-note);
+  }
+
+  /* Right sidebar */
+  .sidebar {
+    position: sticky; top: 0; align-self: start;
+    padding: 16px 14px; display: flex; flex-direction: column; gap: 16px;
+    max-height: 100vh; overflow-y: auto;
+  }
+  .card { background: var(--bg-panel); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
+  .card-head {
+    display: flex; align-items: center; gap: 8px;
+    padding: 10px 13px; font-size: 12px; font-weight: 600; letter-spacing: .04em;
+    text-transform: uppercase; color: var(--text-muted); border-bottom: 1px solid var(--border);
+  }
+  .card-head svg { width: 14px; height: 14px; opacity: .7; }
+  .graph-wrap { position: relative; }
+  canvas { display: block; width: 100%; height: 300px; background: var(--graph-bg); }
+  .graph-hint { padding: 9px 13px; font-size: 11.5px; color: var(--text-faint); border-top: 1px solid var(--border); }
+
+  .backlinks { padding: 6px; }
+  .bl-item { padding: 9px 11px; border-radius: 7px; cursor: default; }
+  .bl-item + .bl-item { margin-top: 2px; }
+  .bl-item:hover { background: var(--bg-elev); }
+  .bl-title { font-size: 13.5px; font-weight: 600; color: var(--link); display: flex; align-items: center; gap: 7px; }
+  .bl-unres { color: var(--text-muted); }
+  .bl-badge { font-size: 10px; text-transform: uppercase; letter-spacing: .05em; color: var(--text-faint);
+    border: 1px solid var(--border-strong); border-radius: 4px; padding: 0 5px; margin-left: auto; }
+  .bl-ctx { font-size: 12.5px; color: var(--text-muted); margin-top: 3px; }
+  .tag-row { display: flex; flex-wrap: wrap; gap: 6px; padding: 12px 13px; }
+
+  @media (max-width: 900px) {
+    .layout { grid-template-columns: 1fr; }
+    .pane { border-right: none; min-height: 0; padding-bottom: 30px; }
+    .sidebar { position: static; max-height: none; }
+    .note h2 { margin-top: 26px; }
+  }
+</style>
+
+<div class="app">
+  <div class="titlebar">
+    <div class="dots"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+    <span class="tab">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>
+      2026-07-27-whoami.md
+    </span>
+    <span class="spacer"></span>
+    <span style="font-size:12px">Obsidian · Reading view</span>
+    <button class="theme-toggle" id="themeBtn">◐ Theme</button>
+  </div>
+
+  <div class="layout">
+    <!-- READING PANE -->
+    <main class="pane">
+      <article class="note">
+        <h1 class="inline-title">Investigation: whoami</h1>
+
+        <!-- Properties (YAML frontmatter) -->
+        <div class="properties" aria-label="Note properties">
+          <div class="prop">
+            <span class="prop-key"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>date</span>
+            <span class="prop-val"><span class="mono-val">2026-07-27</span></span>
+          </div>
+          <div class="prop">
+            <span class="prop-key"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.6 13.4 12 22l-9-9V3h10z"/><circle cx="7.5" cy="7.5" r="1.5" fill="currentColor"/></svg>tags</span>
+            <span class="prop-val">
+              <span class="chip">#siem</span><span class="chip">#splunk</span><span class="chip">#investigation</span><span class="chip">#threat-hunt</span>
+            </span>
+          </div>
+          <div class="prop">
+            <span class="prop-key"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2 2 7l10 5 10-5z"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5"/></svg>techniques</span>
+            <span class="prop-val">
+              <span class="chip mono" data-node="T1033">T1033</span><span class="chip mono" data-node="T1069">T1069</span>
+            </span>
+          </div>
+          <div class="prop">
+            <span class="prop-key"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v16H4z"/><path d="M4 9h16"/></svg>query_file</span>
+            <span class="prop-val"><span class="mono-val">queries/whoami.spl</span></span>
+          </div>
+          <div class="prop">
+            <span class="prop-key"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>timerange</span>
+            <span class="prop-val"><span class="mono-val">-15y → now</span></span>
+          </div>
+          <div class="prop">
+            <span class="prop-key"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="M7 14l4-4 3 3 5-6"/></svg>result_count</span>
+            <span class="prop-val"><span class="mono-val">2</span></span>
+          </div>
+          <div class="prop">
+            <span class="prop-key"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/></svg>status</span>
+            <span class="prop-val"><span class="status-pill">open</span></span>
+          </div>
+        </div>
+
+        <h2>Summary of findings</h2>
+        <p>Hunt for <code>whoami</code> execution in BOTS v3 Sysmon process-creation events (EventID 1). Returned <strong>2 aggregated rows</strong> covering <strong>6 whoami executions</strong>, all on a single host, <strong><code>FYODOR-L.froth.ly</code></strong>, and every one spawned by <strong><code>powershell.exe</code></strong>:</p>
+        <ul>
+          <li><strong><code>AzureAD\FyodorMalteskesko</code></strong> — 5 executions: plain <code>whoami</code> and <code>whoami /groups</code>. Enumerating your own identity and group memberships is textbook <strong>discovery</strong>, typically run early in post-compromise reconnaissance.</li>
+          <li><strong><code>NT AUTHORITY\SYSTEM</code></strong> — 1 execution of <code>whoami</code>, also from <code>powershell.exe</code>. Discovery running in a <strong>SYSTEM (elevated) context</strong> launched from PowerShell is the more suspicious signal here: it suggests activity in a privileged process rather than a normal interactive user checking their own account.</li>
+        </ul>
+        <p>The common thread — discovery commands parented by PowerShell, including one in SYSTEM context — is consistent with hands-on-keyboard or scripted reconnaissance on this host. <code>FYODOR-L.froth.ly</code> is worth pivoting on for surrounding PowerShell activity, network connections (Sysmon EventID 3), and any credential-access or execution around the same timeframe.</p>
+
+        <h2>ATT&amp;CK techniques</h2>
+        <ul>
+          <li><span class="wl" data-node="T1033">[[T1033]]</span> — System Owner/User Discovery (<code>whoami</code>)</li>
+          <li><span class="wl" data-node="T1069">[[T1069]]</span> — Permission Groups Discovery (<code>whoami /groups</code>)</li>
+        </ul>
+
+        <h2>Query</h2>
+        <p>Result count: <strong>2</strong> (rows; 6 underlying whoami executions)</p>
+        <pre><span class="lang">spl</span><code><span class="tok-field">index</span>=botsv3 <span class="tok-field">sourcetype</span>=<span class="tok-str">"xmlwineventlog:microsoft-windows-sysmon/operational"</span> <span class="tok-str">"&lt;EventID&gt;1&lt;/EventID&gt;"</span> whoami
+<span class="tok-pipe">|</span> <span class="tok-cmd">rex</span> <span class="tok-str">"Name=.Image.&gt;(?&lt;Image&gt;[^&lt;]+)"</span>
+<span class="tok-pipe">|</span> <span class="tok-cmd">rex</span> <span class="tok-str">"Name=.CommandLine.&gt;(?&lt;CommandLine&gt;[^&lt;]+)"</span>
+<span class="tok-pipe">|</span> <span class="tok-cmd">rex</span> <span class="tok-str">"Name=.User.&gt;(?&lt;User&gt;[^&lt;]+)"</span>
+<span class="tok-pipe">|</span> <span class="tok-cmd">rex</span> <span class="tok-str">"Name=.ParentImage.&gt;(?&lt;ParentImage&gt;[^&lt;]+)"</span>
+<span class="tok-pipe">|</span> <span class="tok-cmd">rex</span> <span class="tok-str">"&lt;Computer&gt;(?&lt;Computer&gt;[^&lt;]+)"</span>
+<span class="tok-pipe">|</span> <span class="tok-cmd">search</span> Image=<span class="tok-str">"*whoami.exe"</span>
+<span class="tok-pipe">|</span> <span class="tok-cmd">stats</span> count values(CommandLine) <span class="tok-cmd">as</span> command_lines values(ParentImage) <span class="tok-cmd">as</span> parent_process <span class="tok-cmd">by</span> Computer User
+<span class="tok-pipe">|</span> <span class="tok-cmd">sort</span> - count</code></pre>
+        <p>Timerange: <code>-15y</code> → <code>now</code> (BOTS v3 data is from August 2018).</p>
+
+        <h2>Notable events</h2>
+        <div class="tbl-wrap">
+          <table>
+            <thead><tr><th>Host</th><th>User</th><th>Count</th><th>Command lines</th><th>Parent</th></tr></thead>
+            <tbody>
+              <tr><td>FYODOR-L.froth.ly</td><td>AzureAD\FyodorMalteskesko</td><td>5</td><td><code>whoami</code>, <code>whoami /groups</code></td><td>powershell.exe</td></tr>
+              <tr><td>FYODOR-L.froth.ly</td><td>NT AUTHORITY\SYSTEM</td><td>1</td><td><code>whoami</code></td><td>powershell.exe</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2>Analyst notes</h2>
+        <ul class="tasks">
+          <li><span class="box"></span><span>Confirmed true positive / false positive:</span></li>
+          <li><span class="box"></span><span>Affected hosts &amp; accounts: FYODOR-L.froth.ly; AzureAD\FyodorMalteskesko, SYSTEM</span></li>
+          <li><span class="box"></span><span>Containment actions:</span></li>
+          <li><span class="box"></span><span>Escalation needed:</span></li>
+          <li><span class="box" style="border:none;background:none;margin-top:0">•</span><span>Notes: Why is <code>whoami</code> running under <code>NT AUTHORITY\SYSTEM</code> via powershell.exe? Pivot on FYODOR-L.froth.ly for the parent PowerShell command lines (EventID 1), network connections (EventID 3), and any credential-access / persistence in the same window.</span></li>
+        </ul>
+      </article>
+    </main>
+
+    <!-- RIGHT SIDEBAR -->
+    <aside class="sidebar">
+      <div class="card">
+        <div class="card-head">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="5" cy="6" r="2.5"/><circle cx="18" cy="5" r="2.5"/><circle cx="12" cy="18" r="2.5"/><path d="M7 7l4 9M16.5 7l-4 9"/></svg>
+          Local graph
+        </div>
+        <div class="graph-wrap">
+          <canvas id="graph" width="620" height="300"></canvas>
+        </div>
+        <div class="graph-hint" id="graphHint">This note links to 2 ATT&amp;CK notes and 4 tags. Hollow nodes = notes not yet created.</div>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-1 1"/><path d="M14 11a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l1-1"/></svg>
+          Outgoing links
+        </div>
+        <div class="backlinks">
+          <div class="bl-item" data-node="T1033">
+            <div class="bl-title bl-unres">T1033 <span class="bl-badge">not created</span></div>
+            <div class="bl-ctx">System Owner/User Discovery — <code>whoami</code></div>
+          </div>
+          <div class="bl-item" data-node="T1069">
+            <div class="bl-title bl-unres">T1069 <span class="bl-badge">not created</span></div>
+            <div class="bl-ctx">Permission Groups Discovery — <code>whoami /groups</code></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.6 13.4 12 22l-9-9V3h10z"/><circle cx="7.5" cy="7.5" r="1.5" fill="currentColor"/></svg>
+          Tags
+        </div>
+        <div class="tag-row">
+          <span class="chip">#siem</span><span class="chip">#splunk</span><span class="chip">#investigation</span><span class="chip">#threat-hunt</span>
+        </div>
+      </div>
+    </aside>
+  </div>
+</div>
+
+<script>
+(function(){
+  // ---- Theme toggle ----
+  var btn = document.getElementById('themeBtn');
+  btn.addEventListener('click', function(){
+    var cur = document.documentElement.getAttribute('data-theme');
+    if(!cur){ cur = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'; }
+    var next = cur === 'dark' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', next);
+    draw();
+  });
+
+  // ---- Local graph ----
+  var canvas = document.getElementById('graph');
+  var ctx = canvas.getContext('2d');
+  var hint = document.getElementById('graphHint');
+  var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function cssvar(n){ return getComputedStyle(document.documentElement).getPropertyValue(n).trim(); }
+
+  // nodes in normalized [0..1] space
+  var nodes = [
+    { id:'note', label:'whoami', type:'note', x:0.5,  y:0.5,  r:15 },
+    { id:'T1033', label:'T1033', type:'unres', x:0.82, y:0.28, r:11 },
+    { id:'T1069', label:'T1069', type:'unres', x:0.84, y:0.66, r:11 },
+    { id:'siem', label:'#siem', type:'tag', x:0.20, y:0.24, r:7 },
+    { id:'splunk', label:'#splunk', type:'tag', x:0.14, y:0.52, r:7 },
+    { id:'investigation', label:'#investigation', type:'tag', x:0.22, y:0.80, r:7 },
+    { id:'threat-hunt', label:'#threat-hunt', type:'tag', x:0.45, y:0.86, r:7 }
+  ];
+  var links = [
+    ['note','T1033'],['note','T1069'],
+    ['note','siem'],['note','splunk'],['note','investigation'],['note','threat-hunt']
+  ];
+  var byId = {}; nodes.forEach(function(n){ byId[n.id]=n; });
+  var hovered = null;
+
+  function resize(){
+    var rect = canvas.getBoundingClientRect();
+    var dpr = window.devicePixelRatio || 1;
+    canvas.width = rect.width * dpr;
+    canvas.height = rect.height * dpr;
+    ctx.setTransform(dpr,0,0,dpr,0,0);
+    W = rect.width; H = rect.height;
+  }
+  var W, H, t0 = performance.now();
+
+  function pos(n, now){
+    var drift = reduce ? 0 : Math.sin((now/1000) + n.x*7 + n.y*5) * 3;
+    var driftY = reduce ? 0 : Math.cos((now/1000) + n.x*4) * 3;
+    return { x: 26 + n.x*(W-52) + drift, y: 22 + n.y*(H-44) + driftY };
+  }
+
+  function draw(now){
+    now = now || performance.now();
+    if(!W) resize();
+    ctx.clearRect(0,0,W,H);
+    var lineCol = cssvar('--graph-line');
+    var colNote = cssvar('--graph-node-note');
+    var colUnres = cssvar('--graph-node-unresolved');
+    var colTag = cssvar('--graph-node-tag');
+    var txt = cssvar('--text-muted');
+    var txtStrong = cssvar('--text');
+
+    // links
+    links.forEach(function(l){
+      var a = pos(byId[l[0]], now), b = pos(byId[l[1]], now);
+      var hot = hovered && (l[0]===hovered || l[1]===hovered);
+      ctx.strokeStyle = hot ? cssvar('--accent') : lineCol;
+      ctx.lineWidth = hot ? 1.8 : 1;
+      ctx.globalAlpha = hot ? 0.9 : 0.55;
+      ctx.beginPath(); ctx.moveTo(a.x,a.y); ctx.lineTo(b.x,b.y); ctx.stroke();
+    });
+    ctx.globalAlpha = 1;
+
+    // nodes
+    nodes.forEach(function(n){
+      var p = pos(n, now);
+      n._px = p.x; n._py = p.y;
+      var isHot = hovered === n.id;
+      var col = n.type==='note' ? colNote : (n.type==='unres' ? colUnres : colTag);
+      // halo
+      if(isHot){ ctx.beginPath(); ctx.arc(p.x,p.y,n.r+6,0,7); ctx.fillStyle = col; ctx.globalAlpha=.18; ctx.fill(); ctx.globalAlpha=1; }
+      ctx.beginPath(); ctx.arc(p.x,p.y,n.r,0,7);
+      if(n.type==='unres'){
+        ctx.fillStyle = cssvar('--graph-bg'); ctx.fill();
+        ctx.lineWidth = 2; ctx.strokeStyle = col; ctx.stroke();
+      } else {
+        ctx.fillStyle = col; ctx.fill();
+      }
+      // label
+      ctx.font = (n.type==='note'?'600 12px ':'11px ') + 'system-ui, sans-serif';
+      ctx.fillStyle = isHot ? txtStrong : txt;
+      ctx.textAlign = 'center'; ctx.textBaseline = 'top';
+      ctx.fillText(n.label, p.x, p.y + n.r + 3);
+    });
+
+    if(!reduce) requestAnimationFrame(draw);
+  }
+
+  function hitTest(mx,my){
+    for(var i=0;i<nodes.length;i++){
+      var n=nodes[i]; if(n._px==null) continue;
+      var dx=mx-n._px, dy=my-n._py;
+      if(dx*dx+dy*dy < (n.r+5)*(n.r+5)) return n.id;
+    }
+    return null;
+  }
+  canvas.addEventListener('mousemove', function(e){
+    var r=canvas.getBoundingClientRect();
+    hovered = hitTest(e.clientX-r.left, e.clientY-r.top);
+    canvas.style.cursor = hovered ? 'pointer' : 'default';
+    if(reduce) draw();
+  });
+  canvas.addEventListener('mouseleave', function(){ hovered=null; if(reduce) draw(); });
+
+  // link wikilinks + backlinks to graph highlight
+  function wire(sel){
+    document.querySelectorAll(sel).forEach(function(el){
+      var id = el.getAttribute('data-node');
+      el.addEventListener('mouseenter', function(){ hovered=id; if(reduce) draw();
+        var n=byId[id]; if(n){ hint.textContent = n.type==='unres'
+          ? id + ' — linked ATT&CK note (not yet created in the vault).'
+          : id + ' — tag node.'; } });
+      el.addEventListener('mouseleave', function(){ hovered=null; if(reduce) draw();
+        hint.textContent='This note links to 2 ATT&CK notes and 4 tags. Hollow nodes = notes not yet created.'; });
+    });
+  }
+  wire('.wl'); wire('.bl-item'); wire('.chip[data-node]');
+
+  window.addEventListener('resize', function(){ resize(); if(reduce) draw(); });
+  resize();
+  draw();
+})();
+</script>

@@ -1,0 +1,3 @@
+index=botsv3 sourcetype="XmlWinEventLog:Microsoft-Windows-Sysmon/Operational" EventCode=1 (CommandLine="*-enc*" OR CommandLine="*-EncodedCommand*" OR CommandLine="*FromBase64String*" OR CommandLine="*-w hidden*")
+| stats count values(CommandLine) as command_lines values(ParentImage) as parent_process by Computer User Image
+| sort - count
