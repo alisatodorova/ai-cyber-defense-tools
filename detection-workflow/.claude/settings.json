@@ -1,0 +1,45 @@
+{
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "./scripts/check-prereqs.sh"
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": ".*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "./scripts/check-sensitive.sh"
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo 'File modified' >> hook-test.log"
+          }
+        ]
+      },
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash -c 'input=$(cat); file=$(printf \"%s\" \"$input\" | jq -r \".tool_input.file_path // empty\"); if printf \"%s\" \"$file\" | grep -qi rules; then out=$(scripts/validate-rule.sh \"$file\" 2>&1); rc=$?; printf \"%s\\n\" \"$out\" >> validation.log; if [ $rc -ne 0 ]; then printf \"%s\\n\" \"$out\" >&2; exit 2; fi; fi'"
+          }
+        ]
+      }
+    ]
+  }
+}

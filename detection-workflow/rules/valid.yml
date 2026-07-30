@@ -1,0 +1,5 @@
+title: Suspicious PowerShell Download
+description: Detects PowerShell downloading a remote payload.
+tags:
+  - attack.execution
+  - attack.t1059.001

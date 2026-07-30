@@ -12,10 +12,11 @@ Most "I used AI" portfolio pieces show a prompt and a screenshot. Mine don't. Ea
 
 | Tool | What it does | Course module | Stack |
 |---|---|---|---|
+| [`detection-workflow`](detection-workflow/) | Claude Code **hooks** that turn a detection-rule repo into a self-policing workspace: `SessionStart` checks prerequisites, `PreToolUse` **blocks** any tool write to a sensitive file (`.env`/`*.key`/`*.pem`/`secrets/`/`credentials/`), and `PostToolUse` validates every edited rule (requires a `description` + a MITRE ATT&CK technique tag) and feeds failures back to Claude for in-loop correction. Guardrails are enforced by the harness on every action - exit code *is* the policy (fail-closed on secrets, fail-open on tooling) | Module 7 - Hooks: Automation Triggers | Claude Code hooks (SessionStart/PreToolUse/PostToolUse), Bash, jq, Sigma YAML |
+| [`siem-queries`](siem-queries/) | A Claude Code slash command (`/query`) that codifies an analyst hunt as a repeatable workflow: run a SIEM query file → triage results → map to MITRE ATT&CK → write an Obsidian investigation note. Backend-portable (auto-detects Splunk REST / Elasticsearch / manual "browser" mode from env vars), with fail-fast input validation, metadata flags (`--severity`/`--assignee`/`--case-id`), and prompt-injection-aware secret handling. Built and exercised against a local Splunk + BOTS v3 lab | Module 6 - Slash Commands: Repeatable Workflows | Claude Code slash commands, Splunk SPL + REST API, PowerShell, Obsidian markdown |
 | [`mcp-detection-kb`](mcp-detection-kb/) | A detection-engineering knowledge base of Sigma and YARA-X rules built to a mechanically-enforced quality standard rather than ad hoc review - a Claude Code skill (`detection-engineering`) codifies the required elements of every rule (ATT&CK tag, justified severity, concrete false positives, test evidence, naming convention), backed by a `validate-rule.py` script that checks compliance and prints a pass/fail JSON report | Module 5 - Skills: Codifying Methodology | Sigma, YARA-X, Python (validation scripts), Claude Code skills |
 | [`mcp-hayabusa`](mcp-hayabusa/) | MCP server wrapping the [Hayabusa](https://github.com/Yamato-Security/hayabusa) EVTX threat-hunting CLI - exposes `scan_evtx` and `get_hayabusa_rules` as structured-JSON tools an LLM client can call directly against Windows event logs. Also doubles as a detection engineering knowledge base: curated Sigma rules and MITRE ATT&CK coverage exposed as browsable resources, plus `analyze_coverage` (tactic/technique-level covered vs. gap reporting) and `suggest_rule` (finds a promotable candidate in Hayabusa's bundled rule set, or scaffolds a new Sigma rule template, for a coverage gap) | Module 3 - MCP: Wrapping Security CLIs and Module 4: MCP - Detection Knowledge Bases | Python, MCP SDK, Hayabusa (Rust CLI, subprocess), Claude Code resources |
 | [`sysmon-parser`](sysmon-parser/) | Dependency-free CLI that extracts, filters, and triages Sysmon process-creation (Event ID 1) telemetry from raw XML into JSON/JSONL/CSV, with summary stats for quick hunting | Module 2 - Building Your First Security Tool | Python (stdlib only) |
-| [`siem-queries`](siem-queries/) | A Claude Code slash command (`/query`) that codifies an analyst hunt as a repeatable workflow: run a SIEM query file → triage results → map to MITRE ATT&CK → write an Obsidian investigation note. Backend-portable (auto-detects Splunk REST / Elasticsearch / manual "browser" mode from env vars), with fail-fast input validation, metadata flags (`--severity`/`--assignee`/`--case-id`), and prompt-injection-aware secret handling. Built and exercised against a local Splunk + BOTS v3 lab | Module 6 - Slash Commands: Repeatable Workflows | Claude Code slash commands, Splunk SPL + REST API, PowerShell, Obsidian markdown |
 
 *(More tools land here as I work through the rest of the course)*
 
@@ -37,6 +38,7 @@ Most "I used AI" portfolio pieces show a prompt and a screenshot. Mine don't. Ea
 - Building analysis tools on top of existing resource data instead of duplicating it, and catching real bugs in ranking/inference heuristics (e.g. a `deprecated` rule outranking a purpose-built one, or a generated rule template's log source being guessed from a file path instead of read from the source rule) through actual testing
 - Codifying a written methodology (what makes a detection rule "done") as a Claude Code skill plus a companion script that checks it mechanically, so compliance doesn't depend on a reviewer remembering to ask the right questions every time
 - Packaging an end-to-end analyst workflow as a parameterized Claude Code slash command (run → triage → ATT&CK-map → document), with backend abstraction (Splunk/Elasticsearch/manual) behind one contract, fail-fast input validation before any side-effecting call, and prompt-injection-aware handling (query files treated as data, secrets loaded from `.env` and never echoed)
+- Enforcing policy through the agent lifecycle with Claude Code hooks (`SessionStart`/`PreToolUse`/`PostToolUse`): using exit codes as control flow (exit 2 to block a tool call or feed a validation failure back to the model for in-loop correction), parsing the tool-call contract on stdin (`jq` over `tool_input.file_path`), and choosing fail-closed vs. fail-open deliberately (hard-block secret writes, warn-only on missing tooling) - a harness-enforced guardrail that holds regardless of what the model was told to do
 
 ## How this maps to an AI Security role
 
@@ -49,13 +51,16 @@ Each tool lives in its own top-level folder with its own `README.md` (usage, arc
 ```
 ai-cyber-defense-tools/
 ├── README.md                 <- this file
+├── detection-workflow/
+│   ├── README.md
+│   └── ...
+├── siem-queries/
+│   ├── README.md
+│   └── ...
 ├── mcp-hayabusa/
 │   ├── README.md
 │   └── ...
 ├── sysmon-parser/
-│   ├── README.md
-│   └── ...
-├── siem-queries/
 │   ├── README.md
 │   └── ...
 └── ...
