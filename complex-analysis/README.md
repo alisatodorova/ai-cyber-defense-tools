@@ -1,6 +1,6 @@
 # complex-analysis — multi-agent security analysis with subagents
 
-> **AI Cyber Defense Ops — Subagents & multi-agent workflows**
+> **AI Cyber Defense Ops — Module 8: Complex Analysis - Threat Intel & Multi-Source Correlation**
 
 Repeatable workflows for complex, multi-step security analysis, built around Claude Code
 **subagents**: purpose-scoped analyst agents that each own one log domain, run in parallel, and
