@@ -1,0 +1,103 @@
+[
+  {
+    "activityDateTime": "2025-07-16T02:22:31Z",
+    "activityDisplayName": "Add member to role",
+    "category": "RoleManagement",
+    "result": "success",
+    "initiatedBy": { "user": { "userPrincipalName": "itadmin@contoso.com", "ipAddress": "185.174.100.203" } },
+    "targetResources": [
+      {
+        "userPrincipalName": "jsmith@contoso.com",
+        "type": "User",
+        "modifiedProperties": [
+          { "displayName": "Role.DisplayName", "oldValue": null, "newValue": "\"Global Administrator\"" }
+        ]
+      }
+    ],
+    "note": "Compromised user elevated to Global Administrator"
+  },
+  {
+    "activityDateTime": "2025-07-16T02:29:48Z",
+    "activityDisplayName": "Add service principal",
+    "category": "ApplicationManagement",
+    "result": "success",
+    "initiatedBy": { "user": { "userPrincipalName": "itadmin@contoso.com", "ipAddress": "185.174.100.203" } },
+    "targetResources": [
+      { "displayName": "backup-sync-connector", "type": "ServicePrincipal", "id": "b1e7c3a0-9f21-4a55-8c14-77de0c2f9a10" }
+    ],
+    "note": "Rogue service principal created for persistence"
+  },
+  {
+    "activityDateTime": "2025-07-16T02:31:12Z",
+    "activityDisplayName": "Add app role assignment to service principal",
+    "category": "ApplicationManagement",
+    "result": "success",
+    "initiatedBy": { "user": { "userPrincipalName": "itadmin@contoso.com", "ipAddress": "185.174.100.203" } },
+    "targetResources": [
+      {
+        "displayName": "backup-sync-connector",
+        "type": "ServicePrincipal",
+        "modifiedProperties": [
+          { "displayName": "AppRole.Value", "oldValue": null, "newValue": "\"Directory.ReadWrite.All\", \"Mail.Read\"" }
+        ]
+      }
+    ],
+    "note": "Granted high-privilege Graph permissions to rogue SP"
+  },
+  {
+    "activityDateTime": "2025-07-16T02:34:57Z",
+    "activityDisplayName": "Add password to service principal (credential added)",
+    "category": "ApplicationManagement",
+    "result": "success",
+    "initiatedBy": { "user": { "userPrincipalName": "itadmin@contoso.com", "ipAddress": "185.174.100.203" } },
+    "targetResources": [
+      { "displayName": "backup-sync-connector", "type": "ServicePrincipal", "id": "b1e7c3a0-9f21-4a55-8c14-77de0c2f9a10" }
+    ],
+    "note": "Client secret added to SP - long-term backdoor"
+  },
+  {
+    "activityDateTime": "2025-07-16T02:41:20Z",
+    "activityDisplayName": "Update conditional access policy",
+    "category": "Policy",
+    "result": "success",
+    "initiatedBy": { "user": { "userPrincipalName": "jsmith@contoso.com", "ipAddress": "185.174.100.203" } },
+    "targetResources": [
+      {
+        "displayName": "CA01 - Require MFA for admins",
+        "type": "Policy",
+        "modifiedProperties": [
+          { "displayName": "State", "oldValue": "\"enabled\"", "newValue": "\"disabled\"" }
+        ]
+      }
+    ],
+    "note": "MFA conditional access policy disabled to ease access"
+  },
+  {
+    "activityDateTime": "2025-07-16T02:48:03Z",
+    "activityDisplayName": "Disable Security Defaults",
+    "category": "Policy",
+    "result": "success",
+    "initiatedBy": { "user": { "userPrincipalName": "jsmith@contoso.com", "ipAddress": "185.174.100.203" } },
+    "targetResources": [
+      { "displayName": "Security Defaults", "type": "Policy" }
+    ],
+    "note": "Tenant security defaults turned off"
+  },
+  {
+    "activityDateTime": "2025-07-16T03:02:19Z",
+    "activityDisplayName": "Add member to group",
+    "category": "GroupManagement",
+    "result": "success",
+    "initiatedBy": { "user": { "userPrincipalName": "jsmith@contoso.com", "ipAddress": "185.174.100.203" } },
+    "targetResources": [
+      {
+        "displayName": "Global Admins",
+        "type": "Group",
+        "modifiedProperties": [
+          { "displayName": "AddedMember", "oldValue": null, "newValue": "\"backup_ea@contoso.com\"" }
+        ]
+      }
+    ],
+    "note": "Attacker-created account added to privileged cloud group"
+  }
+]

