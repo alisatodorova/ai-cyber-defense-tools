@@ -1,6 +1,6 @@
 # purple-team — an end-to-end purple team loop, from threat intel to detection validation
 
-> **AI Cyber Defense Ops — Capstone: the full purple-team loop**
+> **AI Cyber Defense Ops — Module 10: End-to-End Purple Team Workflow**
 
 A Claude Code workspace that runs a complete purple-team exercise as one continuous,
 artifact-driven workflow: **ingest threat intel → map to Atomic Red Team tests → simulate the
