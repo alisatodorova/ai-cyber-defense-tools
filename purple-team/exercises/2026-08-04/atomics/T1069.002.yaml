@@ -1,0 +1,46 @@
+attack_technique: T1069.002
+display_name: 'Permission Groups Discovery: Domain Groups'
+# SAMPLE atomic - modeled on Huntress ClickFix/Matanbuchus/AstarionRAT intrusion (2026-02).
+# Reproduces the operator's on-keyboard domain recon run through the AstarionRAT dispatcher.
+# Safe: read-only enumeration. Run from WIN11V (domain-joined) against CONDEF domain.
+atomic_tests:
+  - name: Domain group discovery via net.exe (intrusion-faithful)
+    auto_generated_guid: 8f6d1a2e-4c3b-4d5a-9e7f-1b2c3d4e5f60
+    description: |
+      Enumerate domain groups and specifically the Domain Admins membership, matching the
+      commands captured in the Huntress report. On Windows, `net.exe` transparently spawns
+      `net1.exe` to service the request, so expect BOTH in process telemetry.
+    supported_platforms:
+      - windows
+    executor:
+      name: command_prompt
+      elevation_required: false
+      command: |
+        net group /domain
+        net group "Domain Admins" /domain
+        nltest /dclist:#{domain}
+    input_arguments:
+      domain:
+        description: Target AD domain (fully-qualified or NetBIOS)
+        type: string
+        default: condef.local
+
+  - name: Domain group discovery via PowerShell AD module (proxy variant)
+    auto_generated_guid: 1c9b7e42-2a11-4f8c-8d3e-6f5a4b3c2d10
+    description: |
+      Same intent as above without net.exe, for testing coverage of LDAP-based enumeration.
+      Requires RSAT / ActiveDirectory module.
+    supported_platforms:
+      - windows
+    executor:
+      name: powershell
+      elevation_required: false
+      command: |
+        Get-ADGroup -Filter * | Select-Object Name
+        Get-ADGroupMember -Identity "Domain Admins" | Select-Object Name,SamAccountName
+    dependencies:
+      - description: ActiveDirectory PowerShell module must be present
+        prereq_command: |
+          if (Get-Module -ListAvailable -Name ActiveDirectory) { exit 0 } else { exit 1 }
+        get_prereq_command: |
+          Write-Host "Install RSAT ActiveDirectory module: Add-WindowsCapability -Online -Name Rsat.ActiveDirectory.DS-LDS.Tools~~~~0.0.1.0"

@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- SIMULATED Microsoft-Windows-Sysmon/Operational export -->
+<!-- Generated 2026-08-04 for purple-team exercise. NOT real collected telemetry. -->
+<!-- Host: WIN11V.condef.local | Domain: CONDEF | Models T1069.002 discovery run via AstarionRAT (cmd.exe <- java.exe sideload) -->
+<Events>
+
+  <!-- ===== T1069.002  net group /domain  (net.exe spawns net1.exe) ===== -->
+  <Event xmlns="http://schemas.microsoft.com/win/2004/08/events/event">
+    <System>
+      <Provider Name="Microsoft-Windows-Sysmon" Guid="{5770385f-c22a-43e0-bf4c-06f5698ffbd9}" />
+      <EventID>1</EventID>
+      <Version>5</Version>
+      <Level>4</Level>
+      <Task>1</Task>
+      <Opcode>0</Opcode>
+      <Keywords>0x8000000000000000</Keywords>
+      <TimeCreated SystemTime="2026-08-04T14:22:03.417Z" />
+      <EventRecordID>184402</EventRecordID>
+      <Correlation />
+      <Execution ProcessID="3164" ThreadID="4088" />
+      <Channel>Microsoft-Windows-Sysmon/Operational</Channel>
+      <Computer>WIN11V.condef.local</Computer>
+      <Security UserID="S-1-5-18" />
+    </System>
+    <EventData>
+      <Data Name="RuleName">technique_id=T1069.002,technique_name=Domain Groups</Data>
+      <Data Name="UtcTime">2026-08-04 14:22:03.417</Data>
+      <Data Name="ProcessGuid">{a1b2c3d4-1a1b-6890-1a01-000000000700}</Data>
+      <Data Name="ProcessId">7412</Data>
+      <Data Name="Image">C:\Windows\System32\net.exe</Data>
+      <Data Name="FileVersion">10.0.26200.1000</Data>
+      <Data Name="Description">Net Command</Data>
+      <Data Name="Product">Microsoft&#xAE; Windows&#xAE; Operating System</Data>
+      <Data Name="Company">Microsoft Corporation</Data>
+      <Data Name="OriginalFileName">net.exe</Data>
+      <Data Name="CommandLine">net group "Domain Admins" /domain</Data>
+      <Data Name="CurrentDirectory">C:\ProgramData\USOShared\</Data>
+      <Data Name="User">CONDEF\svc-backup</Data>
+      <Data Name="LogonGuid">{a1b2c3d4-1a10-6890-4f5c-1e0000000000}</Data>
+      <Data Name="LogonId">0x1e5c4f</Data>
+      <Data Name="TerminalSessionId">2</Data>
+      <Data Name="IntegrityLevel">High</Data>
+      <Data Name="Hashes">SHA256=2F5C5A9C1D1B7E4A3C8B0F6D9E2A1B4C7D8E0F1A2B3C4D5E6F7A8B9C0D1E2F3A</Data>
+      <Data Name="ParentProcessGuid">{a1b2c3d4-1a05-6890-1a01-000000000600}</Data>
+      <Data Name="ParentProcessId">6088</Data>
+      <Data Name="ParentImage">C:\Windows\System32\cmd.exe</Data>
+      <Data Name="ParentCommandLine">cmd.exe /c net group "Domain Admins" /domain</Data>
+      <Data Name="ParentUser">CONDEF\svc-backup</Data>
+    </EventData>
+  </Event>
+
+  <Event xmlns="http://schemas.microsoft.com/win/2004/08/events/event">
+    <System>
+      <Provider Name="Microsoft-Windows-Sysmon" Guid="{5770385f-c22a-43e0-bf4c-06f5698ffbd9}" />
+      <EventID>1</EventID>
+      <Version>5</Version>
+      <Level>4</Level>
+      <TimeCreated SystemTime="2026-08-04T14:22:03.462Z" />
+      <EventRecordID>184403</EventRecordID>
+      <Execution ProcessID="3164" ThreadID="4088" />
+      <Channel>Microsoft-Windows-Sysmon/Operational</Channel>
+      <Computer>WIN11V.condef.local</Computer>
+      <Security UserID="S-1-5-18" />
+    </System>
+    <EventData>
+      <Data Name="RuleName">technique_id=T1069.002,technique_name=Domain Groups</Data>
+      <Data Name="UtcTime">2026-08-04 14:22:03.462</Data>
+      <Data Name="ProcessGuid">{a1b2c3d4-1a1b-6890-1a01-000000000701}</Data>
+      <Data Name="ProcessId">7708</Data>
+      <Data Name="Image">C:\Windows\System32\net1.exe</Data>
+      <Data Name="OriginalFileName">net1.exe</Data>
+      <Data Name="CommandLine">C:\Windows\system32\net1 group "Domain Admins" /domain</Data>
+      <Data Name="CurrentDirectory">C:\ProgramData\USOShared\</Data>
+      <Data Name="User">CONDEF\svc-backup</Data>
+      <Data Name="IntegrityLevel">High</Data>
+      <Data Name="ParentProcessGuid">{a1b2c3d4-1a1b-6890-1a01-000000000700}</Data>
+      <Data Name="ParentProcessId">7412</Data>
+      <Data Name="ParentImage">C:\Windows\System32\net.exe</Data>
+      <Data Name="ParentCommandLine">net group "Domain Admins" /domain</Data>
+      <Data Name="ParentUser">CONDEF\svc-backup</Data>
+    </EventData>
+  </Event>
+
+  <!-- ===== T1018  nltest /dclist  (bundled discovery) ===== -->
+  <Event xmlns="http://schemas.microsoft.com/win/2004/08/events/event">
+    <System>
+      <Provider Name="Microsoft-Windows-Sysmon" Guid="{5770385f-c22a-43e0-bf4c-06f5698ffbd9}" />
+      <EventID>1</EventID>
+      <Version>5</Version>
+      <Level>4</Level>
+      <TimeCreated SystemTime="2026-08-04T14:22:11.905Z" />
+      <EventRecordID>184409</EventRecordID>
+      <Execution ProcessID="3164" ThreadID="4088" />
+      <Channel>Microsoft-Windows-Sysmon/Operational</Channel>
+      <Computer>WIN11V.condef.local</Computer>
+      <Security UserID="S-1-5-18" />
+    </System>
+    <EventData>
+      <Data Name="RuleName">technique_id=T1018,technique_name=Remote System Discovery</Data>
+      <Data Name="UtcTime">2026-08-04 14:22:11.905</Data>
+      <Data Name="ProcessGuid">{a1b2c3d4-1a23-6890-1a01-000000000710}</Data>
+      <Data Name="ProcessId">8020</Data>
+      <Data Name="Image">C:\Windows\System32\nltest.exe</Data>
+      <Data Name="OriginalFileName">nltestrk.exe</Data>
+      <Data Name="CommandLine">nltest /dclist:condef.local</Data>
+      <Data Name="CurrentDirectory">C:\ProgramData\USOShared\</Data>
+      <Data Name="User">CONDEF\svc-backup</Data>
+      <Data Name="IntegrityLevel">High</Data>
+      <Data Name="ParentProcessGuid">{a1b2c3d4-1a05-6890-1a01-000000000600}</Data>
+      <Data Name="ParentProcessId">6088</Data>
+      <Data Name="ParentImage">C:\Windows\System32\cmd.exe</Data>
+      <Data Name="ParentCommandLine">cmd.exe /c nltest /dclist:condef.local</Data>
+      <Data Name="ParentUser">CONDEF\svc-backup</Data>
+    </EventData>
+  </Event>
+
+  <!-- ===== T1136.001  net user /add  (net.exe -> net1.exe) ===== -->
+  <Event xmlns="http://schemas.microsoft.com/win/2004/08/events/event">
+    <System>
+      <Provider Name="Microsoft-Windows-Sysmon" Guid="{5770385f-c22a-43e0-bf4c-06f5698ffbd9}" />
+      <EventID>1</EventID>
+      <Version>5</Version>
+      <Level>4</Level>
+      <TimeCreated SystemTime="2026-08-04T14:25:47.113Z" />
+      <EventRecordID>184501</EventRecordID>
+      <Execution ProcessID="3164" ThreadID="4088" />
+      <Channel>Microsoft-Windows-Sysmon/Operational</Channel>
+      <Computer>WIN11V.condef.local</Computer>
+      <Security UserID="S-1-5-18" />
+    </System>
+    <EventData>
+      <Data Name="RuleName">technique_id=T1136.001,technique_name=Local Account</Data>
+      <Data Name="UtcTime">2026-08-04 14:25:47.113</Data>
+      <Data Name="ProcessGuid">{a1b2c3d4-1c8b-6890-1a01-000000000740}</Data>
+      <Data Name="ProcessId">9112</Data>
+      <Data Name="Image">C:\Windows\System32\net.exe</Data>
+      <Data Name="OriginalFileName">net.exe</Data>
+      <Data Name="CommandLine">net user DefaultService &lt;password&gt; /add</Data>
+      <Data Name="CurrentDirectory">C:\ProgramData\USOShared\</Data>
+      <Data Name="User">CONDEF\svc-backup</Data>
+      <Data Name="IntegrityLevel">High</Data>
+      <Data Name="ParentProcessGuid">{a1b2c3d4-1a05-6890-1a01-000000000600}</Data>
+      <Data Name="ParentProcessId">6088</Data>
+      <Data Name="ParentImage">C:\Windows\System32\cmd.exe</Data>
+      <Data Name="ParentCommandLine">cmd.exe /c C:\programdata\usoshared\rdp.bat</Data>
+      <Data Name="ParentUser">CONDEF\svc-backup</Data>
+    </EventData>
+  </Event>
+
+  <!-- T1098  net localgroup Administradores (FAILED - Spanish group, English host) -->
+  <Event xmlns="http://schemas.microsoft.com/win/2004/08/events/event">
+    <System>
+      <Provider Name="Microsoft-Windows-Sysmon" Guid="{5770385f-c22a-43e0-bf4c-06f5698ffbd9}" />
+      <EventID>1</EventID>
+      <Version>5</Version>
+      <Level>4</Level>
+      <TimeCreated SystemTime="2026-08-04T14:25:47.401Z" />
+      <EventRecordID>184505</EventRecordID>
+      <Execution ProcessID="3164" ThreadID="4088" />
+      <Channel>Microsoft-Windows-Sysmon/Operational</Channel>
+      <Computer>WIN11V.condef.local</Computer>
+      <Security UserID="S-1-5-18" />
+    </System>
+    <EventData>
+      <Data Name="RuleName">technique_id=T1098,technique_name=Account Manipulation</Data>
+      <Data Name="UtcTime">2026-08-04 14:25:47.401</Data>
+      <Data Name="ProcessGuid">{a1b2c3d4-1c8b-6890-1a01-000000000742}</Data>
+      <Data Name="ProcessId">9240</Data>
+      <Data Name="Image">C:\Windows\System32\net.exe</Data>
+      <Data Name="OriginalFileName">net.exe</Data>
+      <Data Name="CommandLine">net localgroup Administradores DefaultService /add</Data>
+      <Data Name="CurrentDirectory">C:\ProgramData\USOShared\</Data>
+      <Data Name="User">CONDEF\svc-backup</Data>
+      <Data Name="IntegrityLevel">High</Data>
+      <Data Name="ParentProcessGuid">{a1b2c3d4-1a05-6890-1a01-000000000600}</Data>
+      <Data Name="ParentProcessId">6088</Data>
+      <Data Name="ParentImage">C:\Windows\System32\cmd.exe</Data>
+      <Data Name="ParentCommandLine">cmd.exe /c C:\programdata\usoshared\rdp.bat</Data>
+      <Data Name="ParentUser">CONDEF\svc-backup</Data>
+    </EventData>
+  </Event>
+
+  <!-- T1098  net localgroup Administrators (SUCCESS, ~10 min later per report) -->
+  <Event xmlns="http://schemas.microsoft.com/win/2004/08/events/event">
+    <System>
+      <Provider Name="Microsoft-Windows-Sysmon" Guid="{5770385f-c22a-43e0-bf4c-06f5698ffbd9}" />
+      <EventID>1</EventID>
+      <Version>5</Version>
+      <Level>4</Level>
+      <TimeCreated SystemTime="2026-08-04T14:35:52.778Z" />
+      <EventRecordID>184611</EventRecordID>
+      <Execution ProcessID="3164" ThreadID="4088" />
+      <Channel>Microsoft-Windows-Sysmon/Operational</Channel>
+      <Computer>WIN11V.condef.local</Computer>
+      <Security UserID="S-1-5-18" />
+    </System>
+    <EventData>
+      <Data Name="RuleName">technique_id=T1098,technique_name=Account Manipulation</Data>
+      <Data Name="UtcTime">2026-08-04 14:35:52.778</Data>
+      <Data Name="ProcessGuid">{a1b2c3d4-1ee8-6890-1a01-000000000760}</Data>
+      <Data Name="ProcessId">9884</Data>
+      <Data Name="Image">C:\Windows\System32\net.exe</Data>
+      <Data Name="OriginalFileName">net.exe</Data>
+      <Data Name="CommandLine">net localgroup Administrators DefaultService /add</Data>
+      <Data Name="CurrentDirectory">C:\ProgramData\USOShared\</Data>
+      <Data Name="User">CONDEF\svc-backup</Data>
+      <Data Name="IntegrityLevel">High</Data>
+      <Data Name="ParentProcessGuid">{a1b2c3d4-1a05-6890-1a01-000000000600}</Data>
+      <Data Name="ParentProcessId">6088</Data>
+      <Data Name="ParentImage">C:\Windows\System32\cmd.exe</Data>
+      <Data Name="ParentCommandLine">cmd.exe /c net localgroup Administrators DefaultService /add</Data>
+      <Data Name="ParentUser">CONDEF\svc-backup</Data>
+    </EventData>
+  </Event>
+
+</Events>

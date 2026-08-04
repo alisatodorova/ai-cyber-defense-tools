@@ -1,0 +1,59 @@
+attack_technique: T1136.001
+display_name: 'Create Account: Local Account'
+# SAMPLE atomic - modeled on Huntress ClickFix/Matanbuchus/AstarionRAT intrusion (2026-02).
+# Reproduces the operator's rogue-admin creation. NOTE: adding to a local group is technically
+# T1098 (Account Manipulation) but is bundled here to mirror the intrusion's rdp.bat behavior.
+# Run in a REVERTIBLE SNAPSHOT - creates a real local account. Cleanup provided.
+atomic_tests:
+  - name: Create rogue local admin (intrusion-faithful, Spanish then English group)
+    auto_generated_guid: 3e2d1c0b-9a87-4655-b4c3-2d1e0f9a8b71
+    description: |
+      Creates local account `DefaultService`, then attempts to add it to `Administradores`
+      (Spanish-localized group name the operator tried first) and, failing that, the English
+      `Administrators`. The Administradores add is EXPECTED TO FAIL on an English-locale host -
+      that failed 4732/exit code is itself a useful detection artifact.
+    supported_platforms:
+      - windows
+    executor:
+      name: command_prompt
+      elevation_required: true
+      command: |
+        net user #{username} #{password} /add
+        net localgroup Administradores #{username} /add
+        net localgroup Administrators #{username} /add
+      cleanup_command: |
+        net user #{username} /delete >nul 2>&1
+    input_arguments:
+      username:
+        description: Rogue account name (matches intrusion)
+        type: string
+        default: DefaultService
+      password:
+        description: Password (matches intrusion)
+        type: string
+        default: <password>
+
+  - name: Create rogue local admin via PowerShell (proxy variant)
+    auto_generated_guid: 7b6a5948-3c2d-41e0-9f8e-1a2b3c4d5e62
+    description: |
+      LocalAccounts-module equivalent, for testing coverage that does not key on net.exe.
+    supported_platforms:
+      - windows
+    executor:
+      name: powershell
+      elevation_required: true
+      command: |
+        $pw = ConvertTo-SecureString "#{password}" -AsPlainText -Force
+        New-LocalUser -Name "#{username}" -Password $pw -AccountNeverExpires
+        Add-LocalGroupMember -Group "Administrators" -Member "#{username}"
+      cleanup_command: |
+        Remove-LocalUser -Name "#{username}" -ErrorAction SilentlyContinue
+    input_arguments:
+      username:
+        description: Rogue account name
+        type: string
+        default: DefaultService
+      password:
+        description: Password
+        type: string
+        default: <password>

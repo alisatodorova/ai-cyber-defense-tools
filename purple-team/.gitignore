@@ -1,0 +1,27 @@
+# Secrets / credentials
+.env
+.env.*
+*.key
+*.pem
+*.pfx
+secrets/
+credentials/
+
+# Scratch / working files
+scratchpad/
+*.tmp
+*.log
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Stray archives / packages (keep source, not binaries)
+*.zip
+*.whl
+
+# OS
+Thumbs.db
+.DS_Store
