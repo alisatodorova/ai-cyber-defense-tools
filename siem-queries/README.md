@@ -1,6 +1,6 @@
 # siem-queries — SIEM threat-hunting as a repeatable slash command
 
-> **AI Cyber Defense Ops — Module 6: Slash Commands (Repeatable Workflows)**
+> Built as part of [module 6, "Slash Commands (Repeatable Workflows)"](https://www.justhacking.com/course/ai-cyber-defense-ops/), from Just Hacking Training's *AI Cyber Defense Ops* course.
 
 A Claude Code **slash command** (`/query`) that turns an ad-hoc SIEM hunt into a repeatable,
 auditable workflow: give it a query file, and it runs the query against the configured SIEM,

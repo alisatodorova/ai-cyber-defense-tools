@@ -28,7 +28,7 @@ _Last updated: 2026-08-04_
 - [ ] (Optional) Live-lab detonation (Option A) to validate EDR-native fields / real hashes
 - [ ] Write Vectr import entry (`exercises/2026-08-04/vectr-import.md`)
 
-## Known constraints
+## Known limitations
 - **Hayabusa MCP scans binary `.evtx` only** — rendered XML is ignored (returns 0 findings silently).
 - No Splunk MCP connected — SIEM queries must be run manually.
 - EVTX in this exercise is **synthetic** (generated from sample XML); detection logic is real, provenance is not.

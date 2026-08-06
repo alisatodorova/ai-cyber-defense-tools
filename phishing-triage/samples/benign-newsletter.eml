@@ -1,0 +1,30 @@
+From: The Dev Weekly <newsletter@devweekly.com>
+Reply-To: The Dev Weekly <newsletter@devweekly.com>
+Return-Path: <bounce@devweekly.com>
+To: alisa@example.com
+Subject: Dev Weekly #212 - Rust async runtimes and Postgres indexing
+Date: Mon, 04 Aug 2026 09:03:11 +0000
+Message-ID: <20260804090311.a1b2c3@devweekly.com>
+Authentication-Results: mx.example.com; spf=pass smtp.mailfrom=devweekly.com; dkim=pass header.d=devweekly.com; dmarc=pass
+Received: from mx.example.com (mx.example.com [10.0.0.5]) by inbox.example.com with ESMTPS; Mon, 04 Aug 2026 09:03:12 +0000
+Received: from send.devweekly.com (send.devweekly.com [198.51.100.20]) by mx.example.com with ESMTPS; Mon, 04 Aug 2026 09:03:11 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+
+Hi Alisa,
+
+This week in Dev Weekly:
+
+  - A deep dive into how Rust async runtimes schedule tasks
+  - Three Postgres indexing patterns that actually move the needle
+  - A roundup of new open-source developer tooling
+
+Read this issue on the web:
+  https://devweekly.com/issues/212
+
+You are receiving this because you subscribed at devweekly.com.
+Update your preferences:
+  https://devweekly.com/u/prefs
+
+Cheers,
+The Dev Weekly team

@@ -1,6 +1,7 @@
 # complex-analysis — multi-agent security analysis with subagents
 
-> **AI Cyber Defense Ops — Module 8: Complex Analysis - Threat Intel & Multi-Source Correlation**
+> Built as part of [module 8, "Complex Analysis (Threat Intel & Multi-Source Correlation)"](https://www.justhacking.com/course/ai-cyber-defense-ops/), from Just Hacking Training's *AI Cyber Defense Ops* course.
+
 
 Repeatable workflows for complex, multi-step security analysis, built around Claude Code
 **subagents**: purpose-scoped analyst agents that each own one log domain, run in parallel, and
@@ -101,7 +102,7 @@ complex-analysis/
   false positive (legitimate defensive work) handled by completing that analysis inline, with the
   gotcha captured in `CLAUDE.md`/`handoff.md` so it doesn't get rediscovered
 
-## Build notes (what mattered)
+## Build notes
 
 - **Subagent safeguard false positive.** The `endpoint-analyst` subagent aborted mid-run on an
   automated cyber safeguard — legitimate defensive IR on synthetic data flagged by intentionally

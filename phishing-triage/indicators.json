@@ -1,0 +1,56 @@
+{
+  "_comment": "Phishing-triage knowledge base. Exposed to MCP clients as the phishing://indicators resource (Module 4 pattern) and consumed by analyze.py's scoring. Edit this file to tune detection; no code change needed. Sources are heuristic, not exhaustive — a miss here should degrade the score, never crash the analyzer.",
+  "suspicious_tlds": [
+    "zip", "mov", "xyz", "top", "tk", "gq", "ml", "cf", "ga", "country",
+    "kim", "work", "support", "review", "click", "link", "loan", "date",
+    "racing", "stream", "download", "rest", "fit", "cam", "quest",
+    "life", "shop", "sbs", "cfd", "bond", "autos", "lol", "cyou"
+  ],
+  "free_hosting_hosts": [
+    "web.app", "firebaseapp.com", "pages.dev", "workers.dev", "netlify.app",
+    "vercel.app", "glitch.me", "repl.co", "replit.app", "weebly.com",
+    "000webhostapp.com", "r2.dev", "github.io", "gitbook.io", "surge.sh",
+    "onrender.com", "web.core.windows.net", "blob.core.windows.net", "duckdns.org"
+  ],
+  "url_shorteners": [
+    "bit.ly", "tinyurl.com", "goo.gl", "t.co", "ow.ly", "is.gd", "buff.ly",
+    "rebrand.ly", "cutt.ly", "rb.gy", "shorturl.at", "tiny.cc", "bl.ink",
+    "t.ly", "s.id"
+  ],
+  "risky_extensions": [
+    ".html", ".htm", ".iso", ".img", ".vhd", ".zip", ".rar", ".7z", ".gz",
+    ".lnk", ".js", ".jse", ".vbs", ".vbe", ".wsf", ".scr", ".exe", ".com",
+    ".pif", ".bat", ".cmd", ".ps1", ".hta", ".jar", ".msi", ".docm",
+    ".xlsm", ".pptm", ".xlsb", ".one", ".svg"
+  ],
+  "lookalike_brands": [
+    "paypal", "microsoft", "office365", "outlook", "apple", "icloud",
+    "amazon", "google", "gmail", "netflix", "docusign", "adobe", "dropbox",
+    "dhl", "fedex", "ups", "usps", "chase", "wellsfargo", "bankofamerica",
+    "hsbc", "linkedin", "facebook", "instagram", "whatsapp", "coinbase",
+    "binance", "metamask", "irs", "hmrc",
+    "dskbank", "unicreditbulbank", "postbank", "fibank", "raiffeisen",
+    "ccbank", "vivacom", "yettel", "telenor", "econt", "speedy", "bgpost",
+    "paysera", "revolut", "mypos", "eurobank"
+  ],
+  "credential_lure_keywords": [
+    "login", "log-in", "signin", "sign-in", "verify", "verification",
+    "account", "secure", "security", "update", "confirm", "password",
+    "credential", "unlock", "validate", "authenticate", "sso", "reset",
+    "recover", "billing", "invoice", "payment",
+    "vhod", "vlizane", "potvardi", "parola", "profil", "sigurnost"
+  ],
+  "urgency_keywords": [
+    "urgent", "immediately", "action required", "action is required",
+    "suspended", "suspend", "locked", "within 24 hours", "within 48 hours",
+    "expire", "expiring", "verify your", "confirm your", "unusual activity",
+    "unusual sign-in", "security alert", "final notice", "failure to",
+    "avoid suspension", "your account will be", "click here", "as soon as possible",
+    "спешно", "незабавно", "изисква се действие", "профилът ви е блокиран",
+    "акаунтът ви е блокиран", "блокиран", "потвърдете", "потвърдете вашия",
+    "в рамките на 24 часа", "в рамките на 48 часа", "изтича", "необичайна активност",
+    "сигнал за сигурност", "последно предупреждение", "вашият акаунт ще бъде",
+    "кликнете тук", "верифицирайте", "спиране", "прекратен",
+    "възстановяване на паролата"
+  ]
+}

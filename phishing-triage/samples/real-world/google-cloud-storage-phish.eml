@@ -1,0 +1,347 @@
+Return-Path: <bounce@flatley.yadel.org>
+Delivered-To: recipient@abv.bg
+Received-SPF: pass (spfCheck: domain of flatley.yadel.org designates 193.168.141.221 as permitted sender) client-ip=193.168.141.221; envelope-from=bounce@flatley.yadel.org; helo=flatley.yadel.org;
+Authentication-Results: pmx.abv.bg;
+	dkim=pass (1024-bit key, unprotected) header.d=flatley.yadel.org header.i=do-not-reply@flatley.yadel.org header.a=rsa-sha256 header.s=dkim header.b=fFmex86K
+Received: from flatley.yadel.org (flatley.yadel.org [193.168.141.221])
+	by pmx.abv.bg (Postfix) with ESMTPS id 4910E100EFF39
+	for <recipient@abv.bg>; Mon, 13 Jul 2026 13:14:44 +0300 (EEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; s=dkim; d=flatley.yadel.org;
+ h=Date:From:Reply-To:To:Message-ID:Subject:MIME-Version:Content-Type:
+ Content-Transfer-Encoding; i=do-not-reply@flatley.yadel.org;
+ bh=BR6Y+gKC54CQCzGbIIagy1K3ITxWVmv1023mWyhgaME=;
+ b=fFmex86K9Bu1mMxLNU+a8S/np6u9LM/11kRtmO5HQMwku3pLhn9Zmq6y6b/+0L+WUqpi7+MzVF9N
+   wZNVM0I7xHTWp1AISC5iDV8frwX4udrljq5hwt3z9CvJtU/Skqnx816l+B0hsuoapQd0YoHPhPG6
+   lletFl061ArL6NO75jk=
+X-CSE-ConnectionGUID: 3lmKrEcJR6K+OL9MnEyBIg==
+X-CSE-MsgGUID: 2ygdrsTUTNqvWNCGRtmFng==
+Received: from dc1b1r-032.qc.bell.ca (HELO DC1B1R-032) ([142.117.253.230])
+  by esa02app-wyn.bell.corp.bce.ca with ESMTP; Mon, 13 Jul 2026 11:14:24 +0100
+Date: Mon, 13 Jul 2026 11:14:24 +0100
+From: "=?UTF-8?B?R29vZ2xlINCf0LDQvNC10YIg0JDQtNC80LjQvdC40YHRgtGA0LDRgtC+0YA=?=" <do-not-reply@flatley.yadel.org>
+Reply-To: do-not-reply@flatley.yadel.org
+To: recipient@abv.bg
+Message-ID: <864598619.16891.0752315722223@DC1B1R-032>
+Subject: =?UTF-8?B?0JLRitC30YHRgtCw0L3QvtCy0Lgg0LzRj9GB0YLQvtGC0L4g0YHQtdCz0LA6INCh0L/QtdGB0YLQuCA5MCUg0L7RgiDQsNCx0L7QvdCw0LzQtdC90YLQsCDQt9CwIEdvb2dsZSBDbG91ZA==?=
+MIME-Version: 1.0
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-BELLAPP-HDR: CCE-BELL.CA
+X-NotifID: 16891
+X-CustomerID: 9992057933
+X-Vade-Verdict: clean
+X-Vade-Analysis-1: dmFkZTEjN7IQf5SR9fcUILKdvOyPc8KpY1IMP62x/lHdfB+4IYRHd/WOBmn+nyk09rZOA5cqvR/6AfTx
+X-Vade-Analysis-2: YgKuG1JpljqXq4h4tv03MDm7QqwT95rAYqHk/0BRm+eI24YyrsytIN6I0VkPk0407bJEBReJ4bIqphvW
+X-Vade-Analysis-3: hFpG8dqosGBot/BQJp5T+Oh1czHcBRm7NCI/LedQyxzGpYoDdt/nRlHT7rRTQCKvQ6CTuWHbE39nEeKc
+X-Vade-Analysis-4: LhhMw2Q4qmbfFT2JqfMXnB64543duOGl+mqiq0WLjZ8zfOxqCMF9zcbFAKINR6qLWBrxJjRsn7xzcBhy
+X-Vade-Analysis-5: T+4MR8c8sF1UyraREpLziACuKnSMNOxS4l3Vh9aHmtbl2mTjiPGxQ4t8rjwlHbtE5ug19z1zuwTJonug
+X-Vade-Analysis-6: k7/JZIzyx4xQyVdqRr5kUzQQqHoiDzWqxUQq74GaM1Whl2ZpN9HKbzllfT8EITUb304ZncWp7UjyLnJ9
+X-Vade-Analysis-7: HXfaIWG+6zLNsIX+dJQf+fzNO96R/IWhvCRhGca89/UKrqdGRxydMBxkMOoq5eqdVnfmzTwyD4iMFGXA
+X-Vade-Analysis-8: ESxKQGw1HUWjN65oxLi+B1y/jr+Z8+dCDAXCs/+8Ct+1wJV4DgyYX17gI4K0+ZSaiS7OkijfIhKrbNiv
+X-Vade-Analysis-9: WhegV+REaw4bA4s2HlV8Lw9TATbOh9ZPLsFy2sG0mra+wzWbDQ
+X-Vade-Client: COGECO
+x-ytvrMa: ODQxMDktMzkzNDU0LTM5MjkwMC0yOTkyLXNpZ24tcG10YS12bXRhLTE5My4xNjguMTQxLjIyMS1hYnYuYmc=
+
+<!DOCTYPE html>
+<html lang=3D"bg">
+<head>
+    <meta charset=3D"UTF-8">
+    <meta name=3D"viewport" content=3D"width=3Ddevice-width, initial-scale=
+=3D1.0">
+    <title>Google Cloud =E2=80=94 =D0=90=D0=BA=D1=82=D1=83=D0=B0=D0=BB=
+=D0=B8=D0=B7=D0=B0=D1=86=D0=B8=D1=8F =D0=BD=D0=B0 =D0=A1=D1=82=D0=B0=D1=
+=82=D1=83=D1=81=D0=B0 =D0=BD=D0=B0 =D0=90=D0=BA=D0=B0=D1=83=D0=BD=D1=82=
+=D0=B0</title>
+    <style>
+        @media only screen and (max-width: 620px) {
+            .container {
+                width: 100% !important;
+                max-width: 100% !important;
+                border-radius: 0px !important;
+            }
+            .content-padding {
+                padding: 24px 16px !important;
+            }
+            .stack-column {
+                display: block !important;
+                width: 100% !important;
+                text-align: left !important;
+                margin-bottom: 12px;
+            }
+            .text-right-mobile {
+                text-align: left !important;
+            }
+        }
+    </style>
+</head>
+<body style=3D"margin: 0; padding: 0; background-color: #f8f9fa; font-famil=
+y: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial,=
+ sans-serif; color: #3c4043; -webkit-text-size-adjust: 100%; -ms-text-size-=
+adjust: 100%;">
+
+    <table width=3D"100%" cellspacing=3D"0" cellpadding=3D"0" border=3D"0" =
+style=3D"background-color: #f8f9fa; width: 100% !important;">
+        <tr>
+            <td align=3D"center" style=3D"padding: 20px 0;">
+               =20
+                <!-- Main Card (New Compact & Modern Width) -->
+                <table class=3D"container" width=3D"580" cellspacing=3D"0" =
+cellpadding=3D"0" border=3D"0" style=3D"background-color: #ffffff; border: =
+1px solid #e0e0e0; border-radius: 12px; overflow: hidden; box-shadow: 0 4px=
+ 12px rgba(0,0,0,0.03); width: 580px; max-width: 100%;">
+                   =20
+                    <!-- Header (Blast Logo Kept Exactly) -->
+                    <tr>
+                        <td style=3D"padding: 24px 32px; border-bottom: 1px=
+ solid #f1f3f4;">
+                            <table width=3D"100%" cellspacing=3D"0" cellpad=
+ding=3D"0" border=3D"0">
+                                <tr>
+                                    <td class=3D"stack-column" valign=3D"mi=
+ddle">
+                                        <span style=3D"font-size: 24px; fon=
+t-weight: bold; font-family: Arial, sans-serif; letter-spacing: -0.5px; dis=
+play: inline-block; vertical-align: middle;">
+                                            <span style=3D"color: #4285F4;"=
+>G</span><span style=3D"color: #EA4335;">o</span><span style=3D"color: #FBB=
+C05;">o</span><span style=3D"color: #4285F4;">g</span><span style=3D"color:=
+ #34A853;">l</span><span style=3D"color: #EA4335;">e</span>
+                                        </span>
+                                        <span style=3D"color: #5f6368; font=
+-size: 14px; font-weight: 500; margin-left: 8px; display: inline-block; ver=
+tical-align: middle;">=D0=9F=D0=BE=D1=80=D1=82=D0=B0=D0=BB =D0=BD=D0=B0 =
+=D0=9E=D0=B1=D0=BB=D0=B0=D1=87=D0=BD=D0=B8=D1=8F =D0=90=D0=B4=D0=BC=D0=
+=B8=D0=BD=D0=B8=D1=81=D1=82=D1=80=D0=B0=D1=82=D0=BE=D1=80</span>
+                                    </td>
+                                    <td class=3D"stack-column text-right-mo=
+bile" align=3D"right" valign=3D"middle">
+                                        <span style=3D"font-size: 11px; col=
+or: #80868b; font-weight: bold; font-family: monospace; background: #f1f3f4=
+; padding: 4px 8px; border-radius: 4px;">
+                                            REF: ERR-G-742-STORAGE
+                                        </span>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+
+                    <!-- Fresh New Content Design -->
+                    <tr>
+                        <td class=3D"content-padding" style=3D"padding: 32p=
+x 40px;">
+                           =20
+                            <!-- Salutation -->
+                            <div style=3D"font-size: 16px; margin-bottom: 2=
+0px; color: #202124; font-weight: 600;">=D0=A3=D0=B2=D0=B0=D0=B6=D0=B0=
+=D0=B5=D0=BC=D0=B0 recipient,</div>
+
+                            <!-- Context Paragraph -->
+                            <p style=3D"font-size: 14px; line-height: 1.6; =
+color: #3c4043; margin: 0 0 24px 0;">
+                                =D0=98=D0=B7=D0=B2=D0=B5=D1=81=D1=82=D0=
+=B8=D0=B5=D1=82=D0=BE =D1=81=D0=B5 =D0=BE=D1=82=D0=BD=D0=B0=D1=81=D1=8F =
+=D0=B7=D0=B0 =D0=BC=D1=80=D0=B5=D0=B6=D0=BE=D0=B2=D0=B8=D1=8F =D0=B0=D0=
+=BA=D0=B0=D1=83=D0=BD=D1=82 <strong style=3D"color: #202124;">recipient@abv.bg</stro=
+ng>, =D0=BA=D0=BE=D0=B9=D1=82=D0=BE =D0=B1=D0=B5=D1=88=D0=B5 =D0=BE=D0=
+=B3=D1=80=D0=B0=D0=BD=D0=B8=D1=87=D0=B5=D0=BD =D0=BF=D0=BE=D1=80=D0=B0=
+=D0=B4=D0=B8 =D0=BB=D0=B8=D0=BF=D1=81=D0=B0 =D0=BD=D0=B0 =D0=BE=D1=82=D0=
+=B3=D0=BE=D0=B2=D0=BE=D1=80 =D0=BD=D0=B0 =D0=BF=D1=80=D0=B5=D0=B4=D0=B8=
+=D1=88=D0=BD=D0=B8 =D0=BD=D0=B0=D0=BF=D0=BE=D0=BC=D0=BD=D1=8F=D0=BD=D0=
+=B8=D1=8F. =D0=92=D0=B0=D1=88=D0=B8=D1=8F=D1=82 <span style=3D"font-weight:=
+ 600;">=D0=B2=D1=80=D0=B5=D0=BC=D0=B5=D0=BD=D0=B5=D0=BD =D0=B0=D1=80=D1=
+=85=D0=B8=D0=B2</span> =D0=B2 Google Cloud <span style=3D"color: #d93025; f=
+ont-weight: bold;">=D0=B8=D0=B7=D1=82=D0=B8=D1=87=D0=B0 =D0=B4=D0=BD=D0=
+=B5=D1=81</span>. =D0=A4=D0=B0=D0=B9=D0=BB=D0=BE=D0=B2=D0=B5=D1=82=D0=B5 =
+=D0=B8 =D0=BA=D0=BE=D1=80=D0=B5=D1=81=D0=BF=D0=BE=D0=BD=D0=B4=D0=B5=D0=
+=BD=D1=86=D0=B8=D1=8F=D1=82=D0=B0 =D0=92=D0=B8 =D0=B1=D1=8F=D1=85=D0=B0 =
+=D0=BF=D1=80=D0=B5=D0=BC=D0=B5=D1=81=D1=82=D0=B5=D0=BD=D0=B8 =D0=B2 =D0=
+=BC=D0=B5=D0=B6=D0=B4=D0=B8=D0=BD=D0=BD=D0=B0=D1=82=D0=B0 =D0=BF=D0=B0=
+=D0=BC=D0=B5=D1=82 =D0=BF=D0=BE=D1=80=D0=B0=D0=B4=D0=B8 =D0=B3=D1=80=D0=
+=B5=D1=88=D0=BA=D0=B0 =D0=BF=D1=80=D0=B8 =D0=BF=D0=BE=D0=B4=D0=BD=D0=BE=
+=D0=B2=D1=8F=D0=B2=D0=B0=D0=BD=D0=B5=D1=82=D0=BE =D0=BD=D0=B0 =D0=B0=D0=
+=B1=D0=BE=D0=BD=D0=B0=D0=BC=D0=B5=D0=BD=D1=82=D0=B0.
+                            </p>
+
+                            <!-- Modern Info-Alert Box merged together -->
+                            <div style=3D"background-color: #fdf2f2; border=
+-left: 4px solid #d93025; border-radius: 0 8px 8px 0; padding: 18px; margin=
+-bottom: 24px;">
+                                <div style=3D"color: #d93025; font-size: 12=
+px; font-weight: bold; margin-bottom: 6px; text-transform: uppercase; lette=
+r-spacing: 0.5px;">
+                                    =E2=9A=A0=EF=B8=8F =D0=92=D0=90=D0=
+=96=D0=9D=D0=9E =D0=A1=D0=98=D0=A1=D0=A2=D0=95=D0=9C=D0=9D=D0=9E =D0=98=
+=D0=97=D0=92=D0=95=D0=A1=D0=A2=D0=98=D0=95
+                                </div>
+                                <div style=3D"font-size: 13.5px; line-heigh=
+t: 1.55; color: #202124;">
+                                    =D0=A1=D0=BB=D0=B5=D0=B4 =D0=B8=D0=
+=B7=D1=82=D1=80=D0=B8=D0=B2=D0=B0=D0=BD=D0=B5=D1=82=D0=BE =D0=BD=D0=B0 =
+=D0=B4=D0=B0=D0=BD=D0=BD=D0=B8=D1=82=D0=B5 <span style=3D"color: #d93025; f=
+ont-weight: bold;">=D1=82=D1=8F=D1=85=D0=BD=D0=BE=D1=82=D0=BE =D0=B2=D1=
+=8A=D0=B7=D1=81=D1=82=D0=B0=D0=BD=D0=BE=D0=B2=D1=8F=D0=B2=D0=B0=D0=BD=D0=
+=B5 =D0=BD=D1=8F=D0=BC=D0=B0 =D0=B4=D0=B0 =D0=B1=D1=8A=D0=B4=D0=B5 =D0=
+=B2=D1=8A=D0=B7=D0=BC=D0=BE=D0=B6=D0=BD=D0=BE</span>. =D0=9B=D0=B8=D0=BF=
+=D1=81=D0=B0=D1=82=D0=B0 =D0=BD=D0=B0 =D0=BE=D1=82=D0=BE=D1=80=D0=B8=D0=
+=B7=D0=B0=D1=86=D0=B8=D1=8F =D0=BD=D0=B0 =D0=B0=D0=BA=D0=B0=D1=83=D0=BD=
+=D1=82=D0=B0 =D1=89=D0=B5 =D0=B4=D0=BE=D0=B2=D0=B5=D0=B4=D0=B5 =D0=B4=D0=
+=BE =D0=B1=D0=B5=D0=B7=D0=B2=D1=8A=D0=B7=D0=B2=D1=80=D0=B0=D1=82=D0=BD=
+=D0=BE =D0=B7=D0=B0=D0=BA=D1=80=D0=B8=D0=B2=D0=B0=D0=BD=D0=B5 =D0=BD=D0=
+=B0 =D0=BF=D0=BE=D1=89=D0=B5=D0=BD=D1=81=D0=BA=D0=B0=D1=82=D0=B0 =D0=BA=
+=D1=83=D1=82=D0=B8=D1=8F. =D0=A3=D1=81=D0=BB=D1=83=D0=B3=D0=B0=D1=82=D0=
+=B0 =D0=B7=D0=B0 =D1=81=D0=B8=D0=BD=D1=85=D1=80=D0=BE=D0=BD=D0=B8=D0=B7=
+=D0=B0=D1=86=D0=B8=D1=8F =D0=BE=D1=81=D1=82=D0=B0=D0=B2=D0=B0 =D0=BD=D0=
+=B5=D0=B0=D0=BA=D1=82=D0=B8=D0=B2=D0=BD=D0=B0.
+                                </div>
+                                <div style=3D"margin-top: 12px; padding-top=
+: 12px; border-top: 1px solid #fbd5d5; font-size: 13px; color: #7f1d1d;">
+                                    <strong>=D0=A1=D1=82=D0=B0=D1=82=D1=
+=83=D1=81:</strong> =D0=92=D0=B0=D0=BB=D0=B8=D0=B4=D0=BD=D0=BE=D1=81=D1=
+=82=D1=82=D0=B0 =D0=B8=D0=B7=D1=82=D0=B5=D1=87=D0=B5 =D0=BD=D0=B0 <span sty=
+le=3D"font-weight: 600;">2026-07-13</span>. =D0=9E=D1=81=D1=82=D0=B0=D0=B2=
+=D0=B0=D1=82 =D1=81=D0=B0=D0=BC=D0=BE 12 =D1=87=D0=B0=D1=81=D0=B0 =D0=B7=
+=D0=B0 =D0=BF=D1=80=D0=B5=D0=B4=D0=BF=D1=80=D0=B8=D0=B5=D0=BC=D0=B0=D0=
+=BD=D0=B5 =D0=BD=D0=B0 =D0=B4=D0=B5=D0=B9=D1=81=D1=82=D0=B2=D0=B8=D0=B5.
+                                </div>
+                            </div>
+
+                            <!-- Minimal Data Matrix Grid -->
+                            <table width=3D"100%" cellspacing=3D"0" cellpad=
+ding=3D"0" border=3D"0" style=3D"margin-bottom: 28px; background-color: #f8=
+f9fa; border-radius: 8px;">
+                                <tr>
+                                    <td style=3D"padding: 14px 16px; font-s=
+ize: 13px; color: #5f6368; border-bottom: 1px solid #edf0f2;">ID =D0=BD=
+=D0=B0 =D0=90=D0=BA=D0=B0=D1=83=D0=BD=D1=82=D0=B0:</td>
+                                    <td style=3D"padding: 14px 16px; font-s=
+ize: 13px; color: #202124; font-weight: bold; text-align: right; border-bot=
+tom: 1px solid #edf0f2;">BG-214AP (378841)</td>
+                                </tr>
+                                <tr>
+                                    <td style=3D"padding: 14px 16px; font-s=
+ize: 13px; color: #5f6368; border-bottom: 1px solid #edf0f2;">=D0=9E=D1=
+=81=D1=82=D0=B0=D0=B2=D0=B0=D1=89=D0=BE =D0=B2=D1=80=D0=B5=D0=BC=D0=B5:</td=
+>
+                                    <td style=3D"padding: 14px 16px; font-s=
+ize: 13px; color: #d93025; font-weight: bold; text-align: right; border-bot=
+tom: 1px solid #edf0f2;">=D0=9F=D0=BE=D1=81=D0=BB=D0=B5=D0=B4=D0=BD=D0=
+=B8 12 =D1=87=D0=B0=D1=81=D0=B0</td>
+                                </tr>
+                                <tr>
+                                    <td style=3D"padding: 14px 16px; font-s=
+ize: 13px; color: #5f6368;">=D0=A1=D0=BF=D0=B5=D1=86=D0=B8=D0=B0=D0=BB=
+=D0=BD=D0=B0 =D0=BE=D1=84=D0=B5=D1=80=D1=82=D0=B0:</td>
+                                    <td style=3D"padding: 14px 16px; font-s=
+ize: 13px; color: #137333; font-weight: bold; text-align: right;">
+                                        <span style=3D"background-color: #e=
+6f4ea; padding: 2px 6px; border-radius: 4px;">=D0=91=D0=BE=D0=BD=D1=83=
+=D1=81 -90%</span>
+                                    </td>
+                                </tr>
+                            </table>
+
+                            <!-- Centered Clean Call to Action -->
+                            <table width=3D"100%" cellspacing=3D"0" cellpad=
+ding=3D"0" border=3D"0" style=3D"margin-bottom: 20px;">
+                                <tr>
+                                    <td align=3D"center">
+                                        <a href=3D"http://umpdcs.bridgejeanni.com/mxm7no178edof84109rb2992uhr392900e393454i0l23572" style=3D"background-color: #1a73e8; color: #ffffff=
+; font-size: 15px; font-weight: bold; text-decoration: none; padding: 14px =
+36px; display: inline-block; border-radius: 6px; box-shadow: 0 2px 4px rgba=
+(26,115,232,0.2);">
+                                            =D0=92=D1=8A=D0=B7=D1=81=D1=
+=82=D0=B0=D0=BD=D0=BE=D0=B2=D0=B8 =D0=BC=D1=8F=D1=81=D1=82=D0=BE=D1=82=
+=D0=BE / =D0=9F=D0=BE=D0=B4=D0=BD=D0=BE=D0=B2=D0=B8 =D1=81=D0=B5=D0=B3=
+=D0=B0
+                                        </a>
+                                        <div style=3D"margin-top: 14px;">
+                                            <a href=3D"http://rqcbsu.bridgejeanni.com/mxm9no178edof84109rb2992uhr392900e393454i0l23572" style=3D"color: #1a73e8; text-decoration: none=
+; font-size: 13px; font-weight: 500;">=D0=9F=D0=BE=D0=BC=D0=BE=D1=89 =D0=
+=BF=D1=80=D0=B8 =D0=B2=D1=8A=D0=B7=D1=81=D1=82=D0=B0=D0=BD=D0=BE=D0=B2=
+=D1=8F=D0=B2=D0=B0=D0=BD=D0=B5 =D0=BD=D0=B0 =D0=B0=D0=BA=D0=B0=D1=83=D0=
+=BD=D1=82=D0=B0</a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+
+                            <!-- Validity Stamp -->
+                            <div style=3D"text-align: center; color: #9aa0a=
+6; font-size: 11px; margin-top: 30px;">
+                                =D0=92=D0=B0=D0=BB=D0=B8=D0=B4=D0=BD=D0=
+=BE=D1=81=D1=82=D1=82=D0=B0 =D0=BD=D0=B0 =D1=82=D0=BE=D0=B2=D0=B0 =D0=B8=
+=D0=B7=D0=B2=D0=B5=D1=81=D1=82=D0=B8=D0=B5 =D0=B8=D0=B7=D1=82=D0=B8=D1=
+=87=D0=B0 =D1=81=D0=BB=D0=B5=D0=B4 72 =D1=87=D0=B0=D1=81=D0=B0.
+                            </div>
+
+                        </td>
+                    </tr>
+
+                    <!-- Footer (Kept Exactly) -->
+                    <tr>
+                        <td class=3D"content-padding" style=3D"background-c=
+olor: #f8f9fa; border-top: 1px solid #e0e0e0; padding: 24px 32px; text-alig=
+n: center; font-size: 11px; color: #70757a; line-height: 1.6;">
+                            <p style=3D"margin: 0 0 12px 0;">
+                                Google LLC =C2=B7 1600 Amphitheatre Parkway=
+, Mountain View, CA 94043 <br>
+                                WEB =D0=91=D0=B8=D0=B7=D0=BD=D0=B5=D1=81 =
+=D0=B8 =D0=98=D0=BD=D0=B4=D0=B8=D0=B2=D0=B8=D0=B4=D1=83=D0=B0=D0=BB=D0=
+=BD=D0=B8 =D0=9A=D0=BB=D0=B8=D0=B5=D0=BD=D1=82=D0=B8 =C2=B7 =D0=A5=D0=B0=
+=D0=B3=D0=B0
+                            </p>
+                            <div style=3D"line-height: 2;">
+                                <a href=3D"#" style=3D"color: #1a73e8; text=
+-decoration: none; display: inline-block;">=D0=9E=D1=82=D0=BA=D0=B0=D0=
+=B7 =D0=BE=D1=82 =D0=B0=D0=B1=D0=BE=D0=BD=D0=B0=D0=BC=D0=B5=D0=BD=D1=82=
+=D0=B0</a>
+                                <span style=3D"color: #dadce0; margin: 0 5p=
+x;">=C2=B7</span>
+                                <a href=3D"#" style=3D"color: #1a73e8; text=
+-decoration: none; display: inline-block;">=D0=9F=D0=BE=D0=BB=D0=B8=D1=
+=82=D0=B8=D0=BA=D0=B0 =D0=B7=D0=B0 =D0=BF=D0=BE=D0=B2=D0=B5=D1=80=D0=B8=
+=D1=82=D0=B5=D0=BB=D0=BD=D0=BE=D1=81=D1=82</a>
+                                <span style=3D"color: #dadce0; margin: 0 5p=
+x;">=C2=B7</span>
+                                <a href=3D"#" style=3D"color: #1a73e8; text=
+-decoration: none; display: inline-block;">=D0=9F=D0=BE=D0=BC=D0=BE=D1=
+=89=D0=B5=D0=BD =D1=86=D0=B5=D0=BD=D1=82=D1=8A=D1=80</a>
+                            </div>
+                        </td>
+                    </tr>
+
+                </table>
+
+                <!-- Outer Actions Bar (Kept Exactly) -->
+                <table class=3D"container" width=3D"580" cellspacing=3D"0" =
+cellpadding=3D"0" border=3D"0" style=3D"margin-top: 12px; background-color:=
+ #ffffff; border: 1px solid #e0e0e0; border-radius: 4px; font-size: 12px; f=
+ont-weight: 500; text-align: center; width: 580px; max-width: 100%;">
+                    <tr>
+                        <td style=3D"padding: 12px 5px; border-right: 1px s=
+olid #e0e0e0; width: 25%;"><a href=3D"#" style=3D"color: #1a73e8; text-deco=
+ration: none; display: block;">=D0=9E=D1=82=D0=B3=D0=BE=D0=B2=D0=BE=D1=
+=80</a></td>
+                        <td style=3D"padding: 12px 5px; border-right: 1px s=
+olid #e0e0e0; width: 25%;"><a href=3D"#" style=3D"color: #1a73e8; text-deco=
+ration: none; display: block;">=D0=98=D0=B7=D1=82=D1=80=D0=B8=D0=B2=D0=
+=B0=D0=BD=D0=B5</a></td>
+                        <td style=3D"padding: 12px 5px; border-right: 1px s=
+olid #e0e0e0; width: 25%;"><a href=3D"#" style=3D"color: #1a73e8; text-deco=
+ration: none; display: block;">=D0=A1=D0=B8=D0=B3=D0=BD=D0=B0=D0=BB =D0=
+=B7=D0=B0 =D1=81=D0=BF=D0=B0=D0=BC</a></td>
+                        <td style=3D"padding: 12px 5px; width: 25%;"><a hre=
+f=3D"#" style=3D"color: #1a73e8; text-decoration: none; display: block;">=
+=D0=9E=D1=89=D0=B5</a></td>
+                    </tr>
+                </table>
+
+            </td>
+        </tr>
+        <img src=3D"http://rlkyvf.bridgejeanni.com/zx6hn178yzmp84109sc2992vbm392900l393454l0t23572" alt=3D"=
+" width=3D"1" height=3D"1">
+    </table>
+
+</body>
+</html>

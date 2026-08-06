@@ -1,6 +1,6 @@
 # personas — system prompts that turn Claude Code into a specific security role
 
-> **AI Cyber Defense Ops — Module 11: System Prompts for Security Personas**
+> Built as part of [module 11, "System Prompts for Security Personas"](https://www.justhacking.com/course/ai-cyber-defense-ops/), from Just Hacking Training's *AI Cyber Defense Ops* course.
 
 Three composable system prompts that constrain Claude Code into a specific
 security-analyst mindset — a threat hunter, an incident responder, and a
@@ -118,7 +118,7 @@ this repo; the versioned copies here are the source of truth.
   YAML frontmatter (`name`/`description`/`keep-coding-instructions`), turning
   a session-scoped CLI flag into a reusable, first-class Claude Code feature
 
-## Build notes (honest state)
+## Build notes
 
 - **Output-style conversion is in progress, not complete.** `threat-hunter.md`
   is queued for conversion to `~/.claude/output-styles/threat-hunter.md` with

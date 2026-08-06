@@ -65,9 +65,9 @@ Tactic-only tags (`attack.execution`) do **not** satisfy rule 2 — a technique 
 - `check-prereqs.sh` also checks `python3`, though no current script needs it — it's a
   placeholder for future Python-based validators.
 
-## Not yet implemented (module features with no script here)
+## Not yet implemented
 
-- **Desktop notifications on completion** — would be a `Stop` / `Notification` hook. Absent.
-- **Cost guardrails** — a budget-aware hook. Absent.
+- **Desktop notifications on completion** — would be a `Stop` / `Notification` hook.
+- **Cost guardrails** — a budget-aware hook.
 
 See `HANDOFF.md` for how to add these next.

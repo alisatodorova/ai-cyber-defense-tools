@@ -1,6 +1,6 @@
 {
   "mcpServers": {
-    "hayabusa": {
+    "phishing-triage": {
       "command": "python",
       "args": ["server.py"]
     }

@@ -24,7 +24,7 @@ cloud logs. See `CLAUDE.md` for the authoritative workflow + file conventions.
 Extraction is `defuddle parse "$url" --md`; **this host lacks `defuddle`/`npx`**,
 so fall back to `WebFetch` for page content.
 
-## Gotchas
+## Known limitations
 - **Safeguard flag:** the `endpoint-analyst` subagent aborted once on an automated
   cyber-safeguard false positive. This is legitimate defensive IR — if it recurs,
   run that analysis inline; output format is identical.

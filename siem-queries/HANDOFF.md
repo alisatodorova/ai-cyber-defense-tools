@@ -55,7 +55,7 @@ The `/query` command has grown over the session: multi-SIEM backend detection
 (no ES instance); the JSON-body wrapper needs tightening for complex DSL when a real ES
 backend exists.
 
-## Gotchas that will bite (see CLAUDE.md for the full list)
+## Known limitations (see CLAUDE.md for the full list)
 
 - BOTS data is 2018 → always `-15y`, never rely on `-24h`.
 - Sysmon sourcetype is lowercase; matching is case-sensitive.

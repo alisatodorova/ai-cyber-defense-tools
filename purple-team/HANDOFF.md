@@ -56,15 +56,8 @@ python scratchpad/mk_evtx.py exercises/2026-08-04/evtx/sim-sysmon-operational.xm
 severity (Sysmon proc-exec; Security 4732 admin-group add). The net.exe→net1.exe pair was
 fully caught.
 
-## 5. The one real gap
 
-Adding an account to the **non-existent localized group `Administradores`** produces **no
-4732** audit event — it is only visible on the process command line. Any rogue-admin
-correlation that keys solely on 4732 (or on the well-known SID `S-1-5-32-544`) will miss
-the operator's Spanish-first attempt. **Recommended fix:** correlation search joining
-Security 4732 **with** Sysmon `net localgroup */add`.
-
-## 6. Next actions (in priority order)
+## 5. Next actions (in priority order)
 
 1. **Run the Step 5 Splunk SPL** (queries in the session's `/query` output — need to be
    saved to `exercises/2026-08-04/siem-query.md`). Verify `index=`/`sourcetype=` match
@@ -75,16 +68,21 @@ Security 4732 **with** Sysmon `net localgroup */add`.
 4. **Preserve the generator:** move `mk_evtx.py` to `scripts/`.
 5. Optional: **live-lab detonation** (test-plan Option A) for EDR-native telemetry.
 
-## 7. Sanitization note
+## 6. Sanitization note
 
 `report.pdf` is the shareable artifact — redacted of the rogue-account password, the
 `.7z` archive passphrase, file hashes, and domain SIDs (verified absent). Those values
 remain in the working files (`threat-intel.md`, `atomics/*.yaml`, `evtx/sim-*.xml`);
 sanitize again before sharing anything other than the PDF.
 
-## 8. Environment gotchas
+## 7. Known limitations
 
 - Hayabusa MCP = binary EVTX only; rendered XML silently yields nothing.
 - No Splunk MCP — SIEM queries are manual.
 - `python-evtx` (reader) is stricter than hayabusa's Rust parser on non-template BinXML;
   its parse errors are NOT proof the EVTX is bad — confirm with hayabusa itself.
+- Adding an account to the **non-existent localized group `Administradores`** produces **no
+4732** audit event — it is only visible on the process command line. Any rogue-admin
+correlation that keys solely on 4732 (or on the well-known SID `S-1-5-32-544`) will miss
+the operator's Spanish-first attempt. **Recommended fix:** correlation search joining
+Security 4732 **with** Sysmon `net localgroup */add`.

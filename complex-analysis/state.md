@@ -32,7 +32,7 @@ Attacker IPs bridging both planes: `172.96.137.160` (AdaptixC2), `185.174.100.20
 (Kyiv/exfil), `193.242.184.150` (reverse-SSH). Shared accounts: `jsmith`,
 `backup_EA`/`backup_ea`, `itadmin` (cloud-only).
 
-## Known open items / caveats
+## Known limitations
 - `defuddle` and `npx` are NOT installed on this host — TI ingest fell back to `WebFetch`.
 - `endpoint-analyst` subagent aborted once on an automated cyber-safeguard false
   positive; that analysis was completed inline. Cloud subagent ran cleanly.

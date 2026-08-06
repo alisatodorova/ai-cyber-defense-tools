@@ -34,7 +34,7 @@ Credentials come from `.env` (gitignored) or exported env vars; the command load
 itself. See `.env.example`. **Never print secret values** (`SPLUNK_TOKEN`, `ELASTIC_API_KEY`,
 passwords) in output — read them from the User environment / `.env` and use without echoing.
 
-## This machine (Windows) — hard-won gotchas
+## This machine (Windows)
 
 - **PowerShell:** only Windows PowerShell **5.1** (`powershell.exe`) is installed — **no
   `pwsh`**. Scripts must be 5.1-compatible: no `-SkipCertificateCheck` (use a
@@ -46,7 +46,7 @@ passwords) in output — read them from the User environment / `.env` and use wi
 - **Not admin:** this session can't install MSIs or start/stop the Splunkd service — those
   steps must be handed to the user.
 
-## BOTS v3 dataset gotchas (the lab data)
+## BOTS v3 dataset limitations (the lab data)
 
 - **Data is from August 2018.** A default `-24h` search returns nothing — pass a wide window
   like **`-15y`** (or `earliest=0`).

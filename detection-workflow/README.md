@@ -1,6 +1,8 @@
 # detection-workflow — hooks that enforce detection-engineering guardrails automatically
 
 > **AI Cyber Defense Ops — Module 7: Hooks (Automation Triggers)**
+> Built as part of [module 7, "Hooks (Automation Triggers)"](https://www.justhacking.com/course/ai-cyber-defense-ops/), from Just Hacking Training's *AI Cyber Defense Ops* course.
+
 
 A set of **Claude Code hooks** that turn a detection-rule repo into a self-policing workspace:
 every time a rule file is written, it's validated; every time a tool tries to touch a sensitive
@@ -121,15 +123,6 @@ detection-workflow/
 - Defense-in-depth against prompt injection: the harness enforces the guard regardless of the
   model's instructions
 
-## Build notes (honest state)
-
-The module concept spans five guardrails; three are wired as scripts in this repo and two are
-not yet persisted here — kept visible rather than papered over (see [`STATE.md`](STATE.md) /
-[`HANDOFF.md`](HANDOFF.md)):
-
-- **Implemented:** validation-on-save, sensitive-file protection, prerequisite check on startup.
-- **Not wired in `.claude/settings.json` yet:** **desktop notifications on completion** (a
-  `Stop`/`Notification` hook) and **cost guardrails** (a budget-aware hook). They were covered in
-  the module but have no script here; HANDOFF records them as the next step.
+## Build notes 
 - **Cross-platform caveat:** the hooks are Bash + `jq`. On Windows they need Git Bash on `PATH`;
   a native PowerShell port would make them shell-agnostic. Noted, not done.

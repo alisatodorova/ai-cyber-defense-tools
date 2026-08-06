@@ -1,6 +1,6 @@
 # purple-team — an end-to-end purple team loop, from threat intel to detection validation
 
-> **AI Cyber Defense Ops — Module 10: End-to-End Purple Team Workflow**
+> Built as part of [module 10, "End-to-End Purple Team Workflow"](https://www.justhacking.com/course/ai-cyber-defense-ops/), from Just Hacking Training's *AI Cyber Defense Ops* course.
 
 A Claude Code workspace that runs a complete purple-team exercise as one continuous,
 artifact-driven workflow: **ingest threat intel → map to Atomic Red Team tests → simulate the
@@ -117,7 +117,7 @@ purple-team/
   stripped of credentials, passphrases, keys, hashes, and account identifiers, and the redaction is
   verified by re-reading the output
 
-## Build notes (honest state)
+## Known limitations
 
 - **Execution stage is simulated, not detonated.** The telemetry here is synthetic EVTX generated
   from sample event XML — the detection logic exercised is production Sigma/Hayabusa, but the events

@@ -1,0 +1,136 @@
+{
+  "file": "E:\\ClaudeWork\\ai-cyber-defense-tools\\phishing-triage\\samples\\real-world\\google-cloud-storage-phish.eml",
+  "sha256": "fbf2cb638033dbdb8ac1ad9b36515284288779c87c4dd71839380fab3bab5ccf",
+  "subject": "Възстанови мястото сега: Спести 90% от абонамента за Google Cloud",
+  "headers": {
+    "From": "Google Памет Администратор <do-not-reply@flatley.yadel.org>",
+    "Reply-To": "do-not-reply@flatley.yadel.org",
+    "Return-Path": "<bounce@flatley.yadel.org>",
+    "To": "recipient@abv.bg",
+    "Subject": "Възстанови мястото сега: Спести 90% от абонамента за Google Cloud",
+    "Date": "Mon, 13 Jul 2026 11:14:24 +0100",
+    "Message-ID": "<864598619.16891.0752315722223@DC1B1R-032>"
+  },
+  "sender_alignment": {
+    "from_name": "Google Памет Администратор",
+    "from_address": "do-not-reply@flatley.yadel.org",
+    "from_domain": "flatley.yadel.org",
+    "from_tld": "org",
+    "from_tld_suspicious": false,
+    "reply_to_domain": "flatley.yadel.org",
+    "return_path_domain": "flatley.yadel.org",
+    "reply_to_mismatch": false,
+    "return_path_mismatch": false,
+    "display_name_spoof": true,
+    "local_part_spoof": false,
+    "spoofed_brand": "google"
+  },
+  "auth_results": {
+    "spf": "pass",
+    "dkim": "pass",
+    "dmarc": "none"
+  },
+  "received_chain": [
+    {
+      "hop": 1,
+      "ip": "142.117.253.230",
+      "timestamp": "Mon, 13 Jul 2026 11:14:24 +0100",
+      "raw": "from dc1b1r-032.qc.bell.ca (HELO DC1B1R-032) ([142.117.253.230]) by esa02app-wyn.bell.corp.bce.ca with ESMTP; Mon, 13 Jul 2026 11:14:24 +0100"
+    },
+    {
+      "hop": 2,
+      "ip": "193.168.141.221",
+      "timestamp": "Mon, 13 Jul 2026 13:14:44 +0300 (EEST)",
+      "raw": "from flatley.yadel.org (flatley.yadel.org [193.168.141.221]) by pmx.abv.bg (Postfix) with ESMTPS id 4910E100EFF39 for <recipient@abv.bg>; Mon, 13 Jul 2026 13:14:44 +0300 (EEST)"
+    }
+  ],
+  "urls": [
+    {
+      "url": "http://umpdcs.bridgejeanni.com/mxm7no178edof84109rb2992uhr392900e393454i0l23572",
+      "defanged": "hxxp://umpdcs[.]bridgejeanni[.]com/mxm7no178edof84109rb2992uhr392900e393454i0l23572",
+      "host": "umpdcs.bridgejeanni.com",
+      "flags": {
+        "shortener": false,
+        "raw_ip": false,
+        "punycode": false,
+        "suspicious_tld": false,
+        "credential_lure": false,
+        "free_hosting": false,
+        "lookalike_brand": null
+      }
+    },
+    {
+      "url": "http://rqcbsu.bridgejeanni.com/mxm9no178edof84109rb2992uhr392900e393454i0l23572",
+      "defanged": "hxxp://rqcbsu[.]bridgejeanni[.]com/mxm9no178edof84109rb2992uhr392900e393454i0l23572",
+      "host": "rqcbsu.bridgejeanni.com",
+      "flags": {
+        "shortener": false,
+        "raw_ip": false,
+        "punycode": false,
+        "suspicious_tld": false,
+        "credential_lure": false,
+        "free_hosting": false,
+        "lookalike_brand": null
+      }
+    },
+    {
+      "url": "http://rlkyvf.bridgejeanni.com/zx6hn178yzmp84109sc2992vbm392900l393454l0t23572",
+      "defanged": "hxxp://rlkyvf[.]bridgejeanni[.]com/zx6hn178yzmp84109sc2992vbm392900l393454l0t23572",
+      "host": "rlkyvf.bridgejeanni.com",
+      "flags": {
+        "shortener": false,
+        "raw_ip": false,
+        "punycode": false,
+        "suspicious_tld": false,
+        "credential_lure": false,
+        "free_hosting": false,
+        "lookalike_brand": null
+      }
+    }
+  ],
+  "url_count": 3,
+  "tracking_pixels": [
+    "hxxp://rlkyvf[.]bridgejeanni[.]com/zx6hn178yzmp84109sc2992vbm392900l393454l0t23572"
+  ],
+  "attachments": [],
+  "attachment_count": 0,
+  "urgency_hits": [
+    "изтича"
+  ],
+  "attack": [
+    {
+      "id": "T1036",
+      "name": "Masquerading"
+    },
+    {
+      "id": "T1204.001",
+      "name": "User Execution: Malicious Link"
+    },
+    {
+      "id": "T1566.002",
+      "name": "Phishing: Spearphishing Link"
+    }
+  ],
+  "risk": {
+    "score": 7,
+    "verdict": "likely-phish",
+    "reasons": [
+      {
+        "reason": "Display name impersonates 'google' but sending domain is flatley.yadel.org",
+        "weight": 3
+      },
+      {
+        "reason": "Impersonates 'google' but links to an unrelated domain (umpdcs.bridgejeanni.com) — neither the brand nor the sender",
+        "weight": 2
+      },
+      {
+        "reason": "Contains a 1x1 remote tracking pixel (hxxp://rlkyvf[.]bridgejeanni[.]com/zx6hn178yzmp84109sc2992vbm392900l393454l0t23572)",
+        "weight": 1
+      },
+      {
+        "reason": "Urgency/pressure language in subject or body (изтича)",
+        "weight": 1
+      }
+    ]
+  }
+}

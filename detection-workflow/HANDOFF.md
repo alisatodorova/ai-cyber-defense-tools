@@ -16,10 +16,8 @@ The three lifecycle guardrails work and are verified (see `STATE.md`):
 - **`PostToolUse` (`Write|Edit`)** logs every edit and validates any file under `rules/`,
   surfacing failures back to Claude with exit 2 — verified against all three fixtures.
 
-## Missing pieces (the two module features not wired here)
 
-The module brief lists five guardrails; two have **no script in this repo**. These are the next
-work, not silently-dropped scope:
+## Suggested next steps
 
 1. **Desktop notifications on completion.** Add a `Stop` (or `Notification`) hook to
    `.claude/settings.json` that fires when Claude finishes a turn. On Windows the notifier is
@@ -31,20 +29,18 @@ work, not silently-dropped scope:
    confirm the available fields before wiring, and default to **warn-only** (exit 0) unless a
    hard budget stop is explicitly wanted.
 
-## Suggested next steps
-
-1. **Decide fail-open vs. fail-closed for cost guardrails.** Notifications should always be
+3. **Decide fail-open vs. fail-closed for cost guardrails.** Notifications should always be
    fail-open. Cost: warn-only by default; only exit 2 if the user wants a hard stop.
-2. **Wire the `Stop` notification hook** first (lowest risk, most visible), then the cost hook.
-3. **PowerShell port (optional).** The hooks currently need Git Bash + `jq` on `PATH`. A native
+4. **Wire the `Stop` notification hook** first (lowest risk, most visible), then the cost hook.
+5. **PowerShell port (optional).** The hooks currently need Git Bash + `jq` on `PATH`. A native
    PowerShell version (parse stdin JSON with `ConvertFrom-Json`) would make the repo run on a
    stock Windows box with no Git Bash. Trade-off: two script sets to maintain.
-4. **Broaden the validator (optional).** `validate-rule.sh` checks two things (description +
+6. **Broaden the validator (optional).** `validate-rule.sh` checks two things (description +
    `attack.tNNNN`). The Module 5 `mcp-detection-kb` validator is richer (severity justification,
    concrete false positives, test evidence) — consider calling a shared Python validator from the
    `PostToolUse` hook instead of the minimal shell check, so both projects enforce one standard.
 
-## Gotchas that will bite
+## Known limitations
 
 - **Relative paths:** hook commands (`./scripts/…`) resolve from the **project root** — launching
   Claude Code from elsewhere makes the hooks "silently not run." Start from `detection-workflow/`.

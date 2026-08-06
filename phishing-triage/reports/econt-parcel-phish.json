@@ -1,0 +1,214 @@
+{
+  "file": "E:\\ClaudeWork\\ai-cyber-defense-tools\\phishing-triage\\samples\\real-world\\econt-parcel-phish.eml",
+  "sha256": "c519295133bc8764bded8fc6280dbbea786e168826a42276d6bda167fb87ce7b",
+  "subject": "ВАЖНО: Необходими действия за получаване на пратката Ви",
+  "headers": {
+    "From": "Еконт Експ рес <econt-express-bg@asiakas.life>",
+    "Reply-To": null,
+    "Return-Path": "<econt-express-bg@asiakas.life>",
+    "To": "recipient@abv.bg",
+    "Subject": "ВАЖНО: Необходими действия за получаване на пратката Ви",
+    "Date": "Wed, 15 Jul 2026 06:10:58 +0200",
+    "Message-ID": null
+  },
+  "sender_alignment": {
+    "from_name": "Еконт Експ рес",
+    "from_address": "econt-express-bg@asiakas.life",
+    "from_domain": "asiakas.life",
+    "from_tld": "life",
+    "from_tld_suspicious": true,
+    "reply_to_domain": null,
+    "return_path_domain": "asiakas.life",
+    "reply_to_mismatch": false,
+    "return_path_mismatch": false,
+    "display_name_spoof": false,
+    "local_part_spoof": true,
+    "spoofed_brand": "econt"
+  },
+  "auth_results": {
+    "spf": "pass",
+    "dkim": "pass",
+    "dmarc": "none"
+  },
+  "received_chain": [
+    {
+      "hop": 1,
+      "ip": "5.230.70.209",
+      "timestamp": "Wed, 15 Jul 2026 04:10:58 +0000 (UTC)",
+      "raw": "from vps6a48596baca0 (unknown [5.230.70.209]) (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits) key-exchange X25519 server-signature RSA-PSS (2048 bits)) (No client certificate requested) (Authenticated sender: econt-express-bg@asiakas.life) by mail.velutbg.com (Postfix) with ESMTPSA for <recipient@abv.bg>; Wed, 15 Jul 2026 04:10:58 +0000 (UTC)"
+    },
+    {
+      "hop": 2,
+      "ip": "127.0.0.1",
+      "timestamp": "Wed, 15 Jul 2026 04:10:58 +0000 (UTC)",
+      "raw": "from mail.velutbg.com ([127.0.0.1]) by localhost (mail.velutbg.com [127.0.0.1]) (amavisd-new, port 10026) with ESMTP id BqizeGcL6cDi for <recipient@abv.bg>; Wed, 15 Jul 2026 04:10:58 +0000 (UTC)"
+    },
+    {
+      "hop": 3,
+      "ip": "127.0.0.1",
+      "timestamp": "Wed, 15 Jul 2026 04:10:58 +0000 (UTC)",
+      "raw": "from localhost (localhost [127.0.0.1]) by mail.velutbg.com (Postfix) with ESMTP id 65C80C762D for <recipient@abv.bg>; Wed, 15 Jul 2026 04:10:58 +0000 (UTC)"
+    },
+    {
+      "hop": 4,
+      "ip": "78.128.81.196",
+      "timestamp": "Wed, 15 Jul 2026 07:10:58 +0300 (EEST)",
+      "raw": "from mail.velutbg.com (mail.velutbg.com [78.128.81.196]) by pmx.abv.bg (Postfix) with ESMTPS id 83042100A40D for <recipient@abv.bg>; Wed, 15 Jul 2026 07:10:58 +0300 (EEST)"
+    }
+  ],
+  "urls": [
+    {
+      "url": "https://ee.econt.com/images/email/body_top_left.png",
+      "defanged": "hxxps://ee[.]econt[.]com/images/email/body_top_left[.]png",
+      "host": "ee.econt.com",
+      "flags": {
+        "shortener": false,
+        "raw_ip": false,
+        "punycode": false,
+        "suspicious_tld": false,
+        "credential_lure": false,
+        "free_hosting": false,
+        "lookalike_brand": null
+      }
+    },
+    {
+      "url": "https://ee.econt.com/images/email/body_top_center.png",
+      "defanged": "hxxps://ee[.]econt[.]com/images/email/body_top_center[.]png",
+      "host": "ee.econt.com",
+      "flags": {
+        "shortener": false,
+        "raw_ip": false,
+        "punycode": false,
+        "suspicious_tld": false,
+        "credential_lure": false,
+        "free_hosting": false,
+        "lookalike_brand": null
+      }
+    },
+    {
+      "url": "https://ee.econt.com/images/email/body_top_right.png",
+      "defanged": "hxxps://ee[.]econt[.]com/images/email/body_top_right[.]png",
+      "host": "ee.econt.com",
+      "flags": {
+        "shortener": false,
+        "raw_ip": false,
+        "punycode": false,
+        "suspicious_tld": false,
+        "credential_lure": false,
+        "free_hosting": false,
+        "lookalike_brand": null
+      }
+    },
+    {
+      "url": "https://www.econt.com/wp-content/uploads/2015/11/econt_logo_new1.png",
+      "defanged": "hxxps://www[.]econt[.]com/wp-content/uploads/2015/11/econt_logo_new1[.]png",
+      "host": "www.econt.com",
+      "flags": {
+        "shortener": false,
+        "raw_ip": false,
+        "punycode": false,
+        "suspicious_tld": false,
+        "credential_lure": false,
+        "free_hosting": false,
+        "lookalike_brand": null
+      }
+    },
+    {
+      "url": "https://ee.econt.com/images/email/inner_top_left.png",
+      "defanged": "hxxps://ee[.]econt[.]com/images/email/inner_top_left[.]png",
+      "host": "ee.econt.com",
+      "flags": {
+        "shortener": false,
+        "raw_ip": false,
+        "punycode": false,
+        "suspicious_tld": false,
+        "credential_lure": false,
+        "free_hosting": false,
+        "lookalike_brand": null
+      }
+    },
+    {
+      "url": "https://ee.econt.com/images/email/inner_top_center.png",
+      "defanged": "hxxps://ee[.]econt[.]com/images/email/inner_top_center[.]png",
+      "host": "ee.econt.com",
+      "flags": {
+        "shortener": false,
+        "raw_ip": false,
+        "punycode": false,
+        "suspicious_tld": false,
+        "credential_lure": false,
+        "free_hosting": false,
+        "lookalike_brand": null
+      }
+    },
+    {
+      "url": "https://ee.econt.com/images/email/inner_top_right.png",
+      "defanged": "hxxps://ee[.]econt[.]com/images/email/inner_top_right[.]png",
+      "host": "ee.econt.com",
+      "flags": {
+        "shortener": false,
+        "raw_ip": false,
+        "punycode": false,
+        "suspicious_tld": false,
+        "credential_lure": false,
+        "free_hosting": false,
+        "lookalike_brand": null
+      }
+    },
+    {
+      "url": "https://trackshipment1-econt-com.web.app",
+      "defanged": "hxxps://trackshipment1-econt-com[.]web[.]app",
+      "host": "trackshipment1-econt-com.web.app",
+      "flags": {
+        "shortener": false,
+        "raw_ip": false,
+        "punycode": false,
+        "suspicious_tld": false,
+        "credential_lure": false,
+        "free_hosting": true,
+        "lookalike_brand": "econt"
+      }
+    }
+  ],
+  "url_count": 8,
+  "tracking_pixels": [],
+  "attachments": [],
+  "attachment_count": 0,
+  "urgency_hits": [],
+  "attack": [
+    {
+      "id": "T1036",
+      "name": "Masquerading"
+    },
+    {
+      "id": "T1204.001",
+      "name": "User Execution: Malicious Link"
+    },
+    {
+      "id": "T1566.002",
+      "name": "Phishing: Spearphishing Link"
+    }
+  ],
+  "risk": {
+    "score": 10,
+    "verdict": "likely-phish",
+    "reasons": [
+      {
+        "reason": "Sender address (econt-express-bg@asiakas.life) claims brand 'econt' but domain is asiakas.life",
+        "weight": 3
+      },
+      {
+        "reason": "Sender domain uses a high-abuse TLD (.life)",
+        "weight": 2
+      },
+      {
+        "reason": "Link to brand-lookalike host trackshipment1-econt-com.web.app (impersonates 'econt')",
+        "weight": 3
+      },
+      {
+        "reason": "Link hosted on free app/site hosting (trackshipment1-econt-com.web.app) — brands don't host logins there",
+        "weight": 2
+      }
+    ]
+  }
+}

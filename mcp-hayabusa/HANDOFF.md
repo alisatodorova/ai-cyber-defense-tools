@@ -30,7 +30,7 @@ Both tools return errors as JSON payloads (`{"error": "...", "message": "..."}`)
 `TextContent` block rather than raising protocol-level errors, with distinct codes:
 `hayabusa_not_found`, `file_not_found`, `invalid_argument`, `scan_failed`.
 
-### Detection engineering knowledge base (new)
+### Detection engineering knowledge base
 
 `server.py` also now exposes a small **Sigma rule + ATT&CK coverage knowledge base** as MCP
 resources, separate from the Hayabusa-scanning tools above:
@@ -52,7 +52,7 @@ resources, separate from the Hayabusa-scanning tools above:
 templated forms (`{rule_name}`, `{technique_id}`) are also advertised via
 `list_resource_templates()` for clients that construct URIs dynamically.
 
-### Coverage analysis tools (new)
+### Coverage analysis tools
 
 Two more tools layer analysis on top of the resource data above, rather than duplicating any of
 its coverage logic:
